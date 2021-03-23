@@ -1,0 +1,11 @@
+<div class="row">
+  <%= if allow?(@current_user, "example") do %>
+    <%=
+      component "menu_card",
+      icon: "fad fa-home",
+      name: "example",
+      text: "Example",
+      link: "example_url"
+    %>
+  <% end %>
+</div>
