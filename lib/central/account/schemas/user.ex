@@ -57,6 +57,21 @@ defmodule Central.Account.User do
     end
   end
 
+  def changeset(user, attrs, :script) do
+    user
+    |> cast(attrs, [
+      :name,
+      :email,
+      :password,
+      :icon,
+      :colour,
+      :permissions,
+      :admin_group_id,
+      :data
+    ])
+    |> validate_required([:name, :email, :icon, :colour, :permissions])
+  end
+
   def changeset(struct, params, nil), do: changeset(struct, params)
 
   def changeset(struct, permissions, :permissions) do

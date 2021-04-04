@@ -38,7 +38,6 @@ Some actions/events in the Central section provide pubsub hooks:
 - [Account.create_user, update_user](lib/central/account.ex)
 - [Account.create_report, update_report](lib/central/account.ex)
 
-
 ### Todo
 - rate_limiter_plug.ex (version I copied from previous project uses ExRated which I might not need now)
 - Communication chat rooms
