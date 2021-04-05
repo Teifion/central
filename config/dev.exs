@@ -7,7 +7,7 @@ config :central, Central.Setup,
 config :central, Central.Repo,
   username: "postgres",
   password: "postgres",
-  database: "teiserver_dev",
+  database: "central_dev",
   hostname: "localhost",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
