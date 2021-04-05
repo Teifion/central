@@ -12,6 +12,7 @@ config :central, Extensions,
 
 config :central, Central,
   site_title: "Central",
+  site_description: "Description goes here",
   site_icon: "fas fa-broadcast-tower",
   enable_blog: true,
   blog_title: "Site blog",
