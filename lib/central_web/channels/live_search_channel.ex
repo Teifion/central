@@ -35,6 +35,8 @@ defmodule CentralWeb.LiveSearch.Channel do
       "account_group" ->
         Account.list_groups(search: [simple_search: search_term], order: "Name (A-Z)")
         |> Account.group_as_json()
+
+      # Live search handle_search
     end
   end
 end

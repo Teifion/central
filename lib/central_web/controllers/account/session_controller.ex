@@ -198,6 +198,7 @@ defmodule CentralWeb.Account.SessionController do
 
         case Account.update_user(code.user, user_params) do
           {:ok, user} ->
+            # User password reset successfully
             Central.Logging.Helpers.add_anonymous_audit_log(
               conn,
               "Account: User password reset",

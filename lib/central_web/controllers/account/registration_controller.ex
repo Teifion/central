@@ -72,7 +72,9 @@ defmodule CentralWeb.Account.RegistrationController do
     user = Account.get_user!(conn.user_id)
 
     case Account.update_user(user, user_params, :password) do
-      {:ok, _user} ->
+      {:ok, user} ->
+        # User password updated
+
         conn
         |> put_flash(:info, "Account password updated successfully.")
         |> redirect(to: Routes.account_general_path(conn, :index))

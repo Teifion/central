@@ -4,7 +4,7 @@ defmodule Central.Account.ReportLib do
 
   # Functions
   @spec icon :: String.t()
-  def icon, do: "fas fa-flag"
+  def icon, do: "far fa-flag"
   @spec colours :: {String.t(), String.t(), String.t()}
   def colours, do: Central.Helpers.StylingHelper.colours(:warning)
 

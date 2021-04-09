@@ -87,6 +87,10 @@ config :central, Central.General.LoadTestServer, enable_loadtest: true
 
 config :central, Central.Communication.BlogFile, save_path: "/tmp/blog_files"
 
+config :central, Oban,
+  queues: false,
+  crontab: false
+
 config :logger,
   format: "[$level] $message\n",
   backends: [
