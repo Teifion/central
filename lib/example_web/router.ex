@@ -5,7 +5,6 @@ defmodule ExampleWeb.Router do
     end
   end
 
-
   defmacro example_routes() do
     quote do
       # Standard router stuff goes here
