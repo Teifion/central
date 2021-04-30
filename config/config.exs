@@ -48,9 +48,10 @@ config :central, Central.Communication.BlogFile, save_path: "/etc/central/blog_f
 config :central, Oban,
   repo: Central.Repo,
   plugins: [{Oban.Plugins.Pruner, max_age: 3600}],
-  queues: [logging: 1],
+  queues: [logging: 1, cleanup: 1],
   crontab: [
     # Every day at 2am
+    {"0 2 * * *", Central.Admin.CleanupTask},
     {"0 2 * * *", Central.Logging.AggregateViewLogsTask}
   ]
 
