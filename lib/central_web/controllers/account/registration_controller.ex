@@ -72,7 +72,7 @@ defmodule CentralWeb.Account.RegistrationController do
     user = Account.get_user!(conn.user_id)
 
     case Account.update_user(user, user_params, :password) do
-      {:ok, user} ->
+      {:ok, _user} ->
         # User password updated
 
         conn
