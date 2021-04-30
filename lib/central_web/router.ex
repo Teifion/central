@@ -262,6 +262,9 @@ defmodule CentralWeb.Router do
     get("/groups/:group_id/settings", GroupController, :show_settings)
     post("/groups/:group_id/settings/:key", GroupController, :update_settings)
 
+    # Codes
+    resources("/codes", CodeController)
+
     # Tools
     get("/tools", ToolController, :index)
     get("/tools/falist", ToolController, :falist)
