@@ -26,6 +26,7 @@ Dockerfile
 *.sublime-project
 *.sublime-workspace
 *.code-workspace
+.elixir_ls/*
 
 # Temporary files for e.g. tests
 /tmp

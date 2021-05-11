@@ -20,6 +20,12 @@ config :central, Central,
   file_path: "~/programming/central/",
   credit: "Your name here"
 
+# Default configs
+config :central, Central.Config,
+  defaults: %{
+    tz: "UTC"
+  }
+
 # Configures the endpoint
 config :central, CentralWeb.Endpoint,
   url: [host: "localhost"],
