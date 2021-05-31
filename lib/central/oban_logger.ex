@@ -3,8 +3,8 @@ defmodule Central.ObanLogger do
 
   import Central.Logging.Helpers, only: [add_error_log: 1]
 
-  def handle_event([:oban, :job, :start], measure, meta, _) do
-    Logger.warn("[Oban] :started #{meta.worker} at #{measure.system_time}")
+  def handle_event([:oban, :job, :start], _measure, _meta, _) do
+    # Logger.warn("[Oban] :started #{meta.worker} at #{measure.system_time}")
   end
 
   def handle_event([:oban, :job, :exception], _measure, meta, _) do
