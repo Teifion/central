@@ -56,8 +56,10 @@ config :central, Oban,
   plugins: [{Oban.Plugins.Pruner, max_age: 3600}],
   queues: [logging: 1, cleanup: 1],
   crontab: [
+    # Every hour
+    {"0 * * * *", Central.Admin.CleanupTask},
+
     # Every day at 2am
-    {"0 2 * * *", Central.Admin.CleanupTask},
     {"0 2 * * *", Central.Logging.AggregateViewLogsTask}
   ]
 
