@@ -1,5 +1,5 @@
 <%= if allow?(@current_user, "example") do %>
-  <%= component "sidemenu_item",
+  <%= central_component "sidemenu_item",
     name: "example",
     label: "Example",
     active: assigns[:sidemenu_active],

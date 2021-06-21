@@ -10,11 +10,11 @@ defmodule Central.Helpers.ComponentHelper do
   #   <%= component "tab", name: "Featured" %>
   # <% end %>
 
-  def component(template, assigns \\ %{}) do
+  def central_component(template, assigns \\ %{}) do
     CentralWeb.ComponentView.render(template <> ".html", assigns)
   end
 
-  def component(template, assigns, do: block) do
+  def central_component(template, assigns, do: block) do
     CentralWeb.ComponentView.render(template <> ".html", Keyword.merge(assigns, do: block))
   end
 end

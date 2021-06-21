@@ -53,15 +53,19 @@ config :central, Central.Communication.BlogFile, save_path: "/etc/central/blog_f
 
 config :central, Oban,
   repo: Central.Repo,
-  plugins: [{Oban.Plugins.Pruner, max_age: 3600}],
-  queues: [logging: 1, cleanup: 1],
-  crontab: [
-    # Every hour
-    {"0 * * * *", Central.Admin.CleanupTask},
+  plugins: [
+    {Oban.Plugins.Pruner, max_age: 3600},
+    {Oban.Plugins.Cron,
+      crontab: [
+        # Every hour
+        {"0 * * * *", Central.Admin.CleanupTask},
 
-    # Every day at 2am
-    {"0 2 * * *", Central.Logging.AggregateViewLogsTask}
-  ]
+        # Every day at 2am
+        {"0 2 * * *", Central.Logging.AggregateViewLogsTask}
+      ]
+    }
+  ],
+  queues: [logging: 1, cleanup: 1]
 
 config :central, Central.Mailer,
   noreply_name: "Example.co.uk Noreply",
