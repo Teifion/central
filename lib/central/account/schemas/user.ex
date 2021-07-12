@@ -38,6 +38,9 @@ defmodule Central.Account.User do
 
   @doc false
   def changeset(user, attrs \\ %{}) do
+    attrs = attrs
+      |> remove_whitespace([:email])
+
     if attrs["password"] == "" do
       user
       |> cast(
@@ -66,6 +69,9 @@ defmodule Central.Account.User do
   end
 
   def changeset(user, attrs, :script) do
+    attrs = attrs
+      |> remove_whitespace([:email])
+
     user
     |> cast(
       attrs,
@@ -90,6 +96,9 @@ defmodule Central.Account.User do
   end
 
   def changeset(user, attrs, :self_create) do
+    attrs = attrs
+      |> remove_whitespace([:email])
+
     user
     |> cast(attrs, [:name, :email])
     |> validate_required([:name, :email])
@@ -97,18 +106,27 @@ defmodule Central.Account.User do
   end
 
   def changeset(user, attrs, :limited) do
+    attrs = attrs
+      |> remove_whitespace([:email])
+
     user
     |> cast(attrs, [:name, :email, :icon, :colour] ++ @extra_fields)
     |> validate_required([:name, :email, :icon, :colour])
   end
 
   def changeset(user, attrs, :limited_with_data) do
+    attrs = attrs
+      |> remove_whitespace([:email])
+
     user
     |> cast(attrs, [:name, :email, :icon, :colour, :data] ++ @extra_fields)
     |> validate_required([:name, :email, :icon, :colour])
   end
 
   def changeset(user, attrs, :user_form) do
+    attrs = attrs
+      |> remove_whitespace([:email])
+
     cond do
       attrs["password"] == nil or attrs["password"] == "" ->
         user
