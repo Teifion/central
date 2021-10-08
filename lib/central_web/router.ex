@@ -130,6 +130,7 @@ defmodule CentralWeb.Router do
   scope "/config", CentralWeb.Config do
     pipe_through([:browser, :protected, :admin_layout])
 
+    resources("/site", SiteConfigController, only: [:index, :edit, :update])
     resources("/user", UserConfigController, only: [:index, :edit, :update, :new, :create])
   end
 
