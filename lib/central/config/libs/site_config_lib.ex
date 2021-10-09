@@ -2,11 +2,14 @@ defmodule Central.Config.SiteConfigLib do
   # We can't define it as a library since the libraries import get_site_config from here
 
   alias Central.Repo
-  alias CentralWeb.Config.SiteConfig
+  alias Central.Config.SiteConfig
 
   alias CentralWeb.ACL.PermissionLib
 
-  def get_grouped_configs(user) do
+  def colours(), do: Central.Helpers.StylingHelper.colours(:success2)
+  def icon(), do: "far fa-cogs"
+
+  def get_grouped_user_configs(user) do
     Cache.get_all
     |> Enum.filter(fn c ->
       c.permissions != nil
