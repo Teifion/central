@@ -2,7 +2,6 @@ defmodule CentralWeb.Admin.SiteConfigController do
   use CentralWeb, :controller
 
   alias Central.Config
-  alias Central.Config.{SiteConfig, SiteConfigLib}
 
   plug Bodyguard.Plug.Authorize,
     policy: Central.Dev,
