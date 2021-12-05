@@ -47,8 +47,6 @@ config :central, Central.Account.Guardian,
   secret_key: "UMvfKwEWwOY5g+jUIbnU0zIXUCc8RY6tI+hc8CxoKqBKjKpwdy3VFbFrKk3GI/a0",
   ttl: {30, :days}
 
-config :central, Central.General.LoadTestServer, enable_loadtest: false
-
 config :central, Central.Communication.BlogFile, save_path: "/etc/central/blog_files"
 
 config :central, Oban,

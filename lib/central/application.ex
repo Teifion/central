@@ -36,8 +36,7 @@ defmodule Central.Application do
         concache_sup(:config_user_cache),
         concache_sup(:communication_user_notifications),
         {Oban, oban_config()}
-      ] ++
-        load_test_server()
+      ]
 
     extended_children =
       Application.get_env(:central, Extensions)[:applications]
@@ -87,22 +86,11 @@ defmodule Central.Application do
     )
   end
 
-  defp load_test_server() do
-    env_flag =
-      Application.get_env(:central, Central.General.LoadTestServer)
-      |> Keyword.get(:enable_loadtest)
-
-    if env_flag do
-      [
-        {Central.General.LoadTest.Server, name: Central.General.LoadTest.Server},
-        {Central.General.LoadTest.Stats, name: Central.General.LoadTest.Stats}
-      ]
-    else
-      []
-    end
-  end
-
   def startup_sub_functions do
+    # Do migrations as part of startup
+    path = Application.app_dir(:central, "priv/repo/migrations")
+    Ecto.Migrator.run(Central.Repo, path, :up, all: true)
+
     # Oban logging
     events = [
       [:oban, :job, :start],
