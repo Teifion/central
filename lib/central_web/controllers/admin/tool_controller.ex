@@ -27,6 +27,7 @@ defmodule CentralWeb.Admin.ToolController do
   @spec test_page(Plug.Conn.t(), Map.t()) :: Plug.Conn.t()
   def test_page(conn, params) do
     layout = case params["layout"] do
+      "unauth" -> "unauth.html"
       "empty" -> "empty.html"
       "nomenu" -> "nomenu.html"
       "nomenu_live" -> "nomenu_live.html"
