@@ -31,7 +31,7 @@ tint_page[^;]+?;
   name: "category[public]",
   id: "category_public",
   value: "true",
-  text: "Visible",
+  label: "Visible",
   checked: @changeset.data.public == true
 %>
 

@@ -174,8 +174,9 @@
         name: "post[allow_comments]",
         id: "post_allow_comments",
         value: "true",
-        text: "Allow comments",
-        checked: @changeset.data.allow_comments == true
+        label: "Allow comments",
+        data: @changeset.data.allow_comments,
+        changes: @changeset.changes[:allow_comments]
       %>
     </div>
 
@@ -184,8 +185,9 @@
         name: "post[visible]",
         id: "post_visible",
         value: "true",
-        text: "Visible",
-        checked: @changeset.data.visible == true
+        label: "Visible",
+        data: @changeset.data.visible,
+        changes: @changeset.changes[:visible]
       %>
     </div>
 

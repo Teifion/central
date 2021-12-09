@@ -1,6 +1,4 @@
-<% {fg, bg, bsname} = colours() %>
-
-
+<% {_fg, _bg, bsname} = colours() %>
 
 <style type="text/css">
   .block-button {
@@ -8,8 +6,7 @@
   }
 </style>
 
-<%= render CentralWeb.Logging.GeneralView, "sub_menu.html", Map.merge(assigns, %{active: "page_view"})
-%>
+<%= render CentralWeb.Logging.GeneralView, "sub_menu.html", Map.merge(assigns, %{active: "page_view"}) %>
 
 <div class="row page-row">
   <div class="col-md-12">
@@ -41,8 +38,6 @@
             <tr>
               <td><%= name %></td>
               <td><%= email %></td>
-
-              <%# https://hexdocs.pm/timex/Timex.html#compare/2 %>
 
               <% style = cond do
                   Timex.compare(last_timestamp, @currently) == 1 ->

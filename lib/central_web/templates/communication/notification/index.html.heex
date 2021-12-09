@@ -1,14 +1,6 @@
-<% {fg, bg, bsname} = colours() %>
-<% now = Timex.local() %>
-
-<script type="text/javascript" charset="utf-8">
-  $(function() {
-    // xxx
-    xxx
-  });
-</script>
-
-<%#= render CentralWeb.Account.GeneralView, "sub_menu.html", Map.merge(assigns, %{active: "notifications"})
+<%
+  {_fg, _bg, bsname} = colours()
+  now = Timex.local()
 %>
 
 <div class="row">
@@ -46,7 +38,6 @@
               <th>Body</th>
               <th>&nbsp;</th>
               <th>Expires</th>
-              <%# <th>Data</th> %>
 
               <th colspan="2"></th>
             </tr>

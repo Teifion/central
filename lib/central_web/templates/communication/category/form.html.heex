@@ -38,8 +38,9 @@
       name: "category[public]",
       id: "category_public",
       value: "true",
-      text: "Visible",
-      checked: @changeset.data.public == true
+      label: "Visible",
+      data: @changeset.data.public,
+      changes: @changeset.changes[:public]
     %>
   </div>
 

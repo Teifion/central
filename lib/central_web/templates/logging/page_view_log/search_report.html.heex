@@ -32,8 +32,9 @@
                 name: "f[no_root]",
                 id: "f_no_root",
                 value: "true",
-                text: "Do not include developers",
-                checked: @changeset.data.no_root == true
+                label: "Do not include developers",
+                data: @changeset.data.no_root,
+                changes: @changeset.changes[:no_root]
               %>
             </div>
           </div>

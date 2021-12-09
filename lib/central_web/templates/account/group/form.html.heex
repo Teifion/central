@@ -31,8 +31,9 @@
       name: "group[see_group]",
       id: "group_see_group",
       value: "true",
-      text: "See group",
-      checked: @changeset.data.see_group == true
+      label: "See group",
+      data: @changeset.data.see_group,
+      changes: @changeset.changes[:see_group]
     %>
   </div>
 
@@ -41,8 +42,9 @@
       name: "group[see_members]",
       id: "group_see_members",
       value: "true",
-      text: "See members",
-      checked: @changeset.data.see_members == true
+      label: "See members",
+      data: @changeset.data.see_members,
+      changes: @changeset.changes[:see_members]
     %>
   </div>
 
@@ -51,8 +53,9 @@
       name: "group[self_add_members]",
       id: "group_self_add_members",
       value: "true",
-      text: "Self add members",
-      checked: @changeset.data.self_add_members == true
+      label: "Self add members",
+      data: @changeset.data.self_add_members,
+      changes: @changeset.changes[:self_add_members]
     %>
   </div>
 
@@ -61,8 +64,9 @@
       name: "group[invite_members]",
       id: "group_invite_members",
       value: "true",
-      text: "Invite members",
-      checked: @changeset.data.invite_members == true
+      label: "Invite members",
+      data: @changeset.data.invite_members,
+      changes: @changeset.changes[:invite_members]
     %>
   </div>
 

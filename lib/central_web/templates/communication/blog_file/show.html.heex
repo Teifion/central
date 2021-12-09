@@ -1,11 +1,7 @@
-<% {fg, bg, bsname} = colours() %>
+<% {_fg, _bg, bsname} = colours() %>
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
-    xxx
-    sidebar_active('communications_blogfile');
-    xxx
-
     var selected_tab = window.location.hash.substr(1).replace("_tab", "");
     $('#the_tabs a:first').tab('show');
     $('#the_tabs [href="#' + selected_tab + '_tab"]').click();

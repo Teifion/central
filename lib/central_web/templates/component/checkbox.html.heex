@@ -1,8 +1,19 @@
+<%# 
+  Intended to be called like so:
+  <%= central_component "checkbox",
+    name: "group[see_group]",
+    id: "group_see_group",
+    value: "true",
+    label: "See group",
+    changes: @changeset.changes.see_group
+    data: @changeset.data[:see_group]
+  
+%>
 <%
   checked = cond do
     assigns[:checked] == true -> [checked: "checked"]
-    @changes == true -> [checked: "checked"]
-    @changes == nil and @data == true -> [checked: "checked"]
+    assigns[:changes] == true -> [checked: "checked"]
+    assigns[:changes] == nil and assigns[:data] == true -> [checked: "checked"]
     true -> []
   end
 %>

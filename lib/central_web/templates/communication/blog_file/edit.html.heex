@@ -1,12 +1,4 @@
-<% {fg, bg, bsname} = colours() %>
-
-<script type="text/javascript" charset="utf-8">
-  $(function() {
-    xxx
-    sidebar_active('communications_blogfile');
-    xxx
-  });
-</script>
+<% {_fg, _bg, bsname} = colours() %>
 
 <%= render CentralWeb.Communication.GeneralView, "sub_menu.html", Map.put(assigns, :active, "files") %>
 
