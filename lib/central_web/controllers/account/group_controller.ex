@@ -243,54 +243,6 @@ defmodule CentralWeb.Account.GroupController do
     end
   end
 
-  # def show_settings(conn, %{"group_id" => group_id}) do
-  #   group = GroupLib.get_groups
-  #   |> GroupLib.search(:id, group_id)
-  #   # |> GroupLib.preload_super_group
-  #   # |> GroupLib.preload_type
-  #   # |> GroupLib.preload_members
-  #   # |> GroupLib.preload_memberships
-  #   |> Repo.one
-
-  #   memberships = conn.assigns[:current_user].id
-  #   |> GroupLib.get_user_memeberships()
-  #   |> Repo.all
-
-  #   the_user = %{conn.assigns[:current_user] | memberships: memberships}
-
-  #   group_access = GroupLib.access_policy(group, the_user)
-
-  #   if group_access[:see_group] do
-  #     config_values = group_id
-  #     |> UserGroupConfigLib.get_all_group_configs()
-
-  #     config_infos = UserGroupConfigLib.get_grouped_user_configs(group_access)
-  #     |> Enum.map(fn {section, configs} ->
-  #       {section, configs
-  #       |> Enum.filter(fn c ->
-  #         allow?(conn, c.permissions)
-  #       end)}
-  #     end)
-  #     |> Enum.filter(fn {_s, c} -> c != [] end)
-  #     |> Map.new
-
-  #     conn
-  #     |> assign(:group, group)
-  #     |> assign(:config_infos, config_infos)
-  #     |> assign(:config_values, config_values)
-  #     |> render("show_settings.html")
-  #   else
-  #     conn
-  #     |> put_flash(:warning, "Unable to access this group")
-  #     |> redirect(to: group_path(conn, :index))
-  #   end
-  # end
-
-  # def update_settings(_conn, %{"group_id" => _group_id, "key" => _key}) do
-  #   # conn
-  #   # |> render("show_settings.html")
-  # end
-
   # defp search_params(params \\ %{}) do
   #   %{
   #     name: Map.get(params, "name", ""),

@@ -8,7 +8,7 @@ defmodule CentralWeb.Communication.BlogController do
 
   plug :add_breadcrumb, name: 'Blog', url: '/blog'
 
-  plug :put_layout, "landing_page.html"
+  plug :put_layout, "unauth.html"
 
   @spec index(Plug.Conn.t(), map) :: Plug.Conn.t()
   def index(conn, _params) do

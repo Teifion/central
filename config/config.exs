@@ -1,4 +1,11 @@
-use Mix.Config
+# This file is responsible for configuring your application
+# and its dependencies with the aid of the Config module.
+#
+# This configuration file is loaded before any dependency and
+# is restricted to this project.
+
+# General application configuration
+import Config
 
 config :central,
   ecto_repos: [Central.Repo]
@@ -26,14 +33,42 @@ config :central, Central.Config,
     tz: "UTC"
   }
 
+
 # Configures the endpoint
 config :central, CentralWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "XpxFQRKQYVZmsVcDmPNqPyC7jjOCtIDv4WYtAS1pXAOux10m6sbvqTccijhsczpY",
-  live_view: [signing_salt: "wZVVigZo"],
-  render_errors: [view: CentralWeb.ErrorView, accepts: ~w(html json)],
-  pubsub_server: Central.PubSub
+  render_errors: [view: CentralWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Central.PubSub,
+  live_view: [signing_salt: "SPwrn1bR"]
 
+# Configures the mailer
+#
+# By default it uses the "Local" adapter which stores the emails
+# locally. You can see the emails in your browser, at "/dev/mailbox".
+#
+# For production it's recommended to configure a different adapter
+# at the `config/runtime.exs`.
+config :central, Central.Mailer,
+  adapter: Swoosh.Adapters.Local,
+  noreply_name: "noreply",
+  noreply_address: "noreply@domain",
+  contact_address: "contact@domain"
+
+# Swoosh API client is needed for adapters other than SMTP.
+config :swoosh, :api_client, false
+
+# Configure esbuild (the version is required)
+config :esbuild,
+  version: "0.12.18",
+  default: [
+    args:
+      ~w(js/app.js --bundle --target=es2016 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
+    cd: Path.expand("../assets", __DIR__),
+    env: %{"NODE_PATH" => Path.expand("../deps", __DIR__)}
+  ]
+
+# Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
@@ -65,11 +100,6 @@ config :central, Oban,
   ],
   queues: [logging: 1, cleanup: 1]
 
-config :central, Central.Mailer,
-  noreply_name: "Example.co.uk Noreply",
-  noreply_name: "Example.co.uk Contact",
-  adapter: Bamboo.SMTPAdapter
-
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env()}.exs"
+import_config "#{config_env()}.exs"

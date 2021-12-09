@@ -1,4 +1,4 @@
-use Mix.Config
+import Config
 
 # For production, don't forget to configure the url host
 # to something meaningful, Phoenix uses this information
@@ -68,6 +68,9 @@ config :central, CentralWeb.Endpoint,
   server: true,
   check_origin: ["//example.co.uk", "//*.example.co.uk"],
   version: Mix.Project.config()[:version]
+
+# Do not print debug messages in production
+config :logger, level: :info
 
 # Do not print debug messages in production
 config :logger, level: :info

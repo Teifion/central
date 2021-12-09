@@ -30,14 +30,17 @@ defmodule CentralWeb.Router do
   end
 
   pipeline :admin_layout do
+    plug :put_root_layout, {CentralWeb.LayoutView, :root}
     plug(:put_layout, {CentralWeb.LayoutView, "admin.html"})
   end
 
-  pipeline :blank_layout do
-    plug(:put_layout, {CentralWeb.LayoutView, "blank.html"})
+  pipeline :nomenu_layout do
+    plug :put_root_layout, {CentralWeb.LayoutView, :root}
+    plug(:put_layout, {CentralWeb.LayoutView, "nomenu.html"})
   end
 
   pipeline :empty_layout do
+    plug :put_root_layout, {CentralWeb.LayoutView, :root}
     plug(:put_layout, {CentralWeb.LayoutView, "empty.html"})
   end
 
@@ -72,7 +75,7 @@ defmodule CentralWeb.Router do
   end
 
   scope "/", CentralWeb.General, as: :general do
-    pipe_through([:browser, :blank_layout])
+    pipe_through([:browser, :nomenu_layout])
 
     get("/recache", PageController, :recache)
     get("/browser_info", PageController, :browser_info)
@@ -81,7 +84,7 @@ defmodule CentralWeb.Router do
   end
 
   scope "/", CentralWeb.Account, as: :account do
-    pipe_through([:browser, :blank_layout])
+    pipe_through([:browser, :nomenu_layout])
 
     get("/login", SessionController, :new)
     post("/login", SessionController, :login)
@@ -111,9 +114,6 @@ defmodule CentralWeb.Router do
     put("/groups/update_membership/:group_id/:user_id", GroupController, :update_membership)
 
     resources("/groups", GroupController, only: [:index, :show, :edit, :update])
-
-    get("/groups/:group_id/settings", GroupController, :show_settings)
-    post("/groups/:group_id/settings/:key", GroupController, :update_settings)
 
     get("/report/new/:target_id", ReportController, :new)
     post("/report/create", ReportController, :create)
@@ -184,7 +184,7 @@ defmodule CentralWeb.Router do
   end
 
   scope "/blog", CentralWeb.Communication do
-    pipe_through([:browser, :blank_layout])
+    pipe_through([:browser, :nomenu_layout])
 
     get("/category/:category", BlogController, :category)
     get("/tag/:tag", BlogController, :tag)
@@ -253,9 +253,6 @@ defmodule CentralWeb.Router do
 
     get("/groups/delete_check/:id", GroupController, :delete_check)
     resources("/groups", GroupController)
-
-    get("/groups/:group_id/settings", GroupController, :show_settings)
-    post("/groups/:group_id/settings/:key", GroupController, :update_settings)
 
     # Codes
     resources("/codes", CodeController)
