@@ -1,4 +1,5 @@
 defmodule CentralWeb.ModalComponent do
+  @moduledoc false
   use CentralWeb, :live_component
 
   @impl true

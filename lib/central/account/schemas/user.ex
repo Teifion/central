@@ -1,4 +1,5 @@
 defmodule Central.Account.User do
+  @moduledoc false
   use CentralWeb, :schema
   @behaviour Bodyguard.Policy
 

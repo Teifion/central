@@ -1,4 +1,5 @@
 defmodule Central.Account.AuthLib do
+  @moduledoc false
   require Logger
 
   alias Central.Account.AuthGroups.Server

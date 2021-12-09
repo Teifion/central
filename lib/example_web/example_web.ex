@@ -1,4 +1,5 @@
 defmodule ExampleWeb do
+  @moduledoc false
   def view do
     quote do
       use Phoenix.View,

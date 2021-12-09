@@ -1,4 +1,5 @@
 defmodule Central.Communication.CategoryLib do
+  @moduledoc false
   use CentralWeb, :library
 
   alias Central.Communication.Category

@@ -103,7 +103,7 @@ defmodule Central.Application do
     :telemetry.attach_many("oban-logger", events, &Central.ObanLogger.handle_event/4, [])
 
     ~w(General Config Account Admin Logging Communication)
-    |> Enum.map(&env_startup/1)
+    |> Enum.each(&env_startup/1)
 
     Application.get_env(:central, Extensions)[:startups]
     |> Enum.each(fn m ->

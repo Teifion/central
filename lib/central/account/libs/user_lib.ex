@@ -1,4 +1,5 @@
 defmodule Central.Account.UserLib do
+  @moduledoc false
   use CentralWeb, :library
 
   alias Central.Account.User

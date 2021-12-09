@@ -14,6 +14,7 @@ A phoenix application containing basic user and admin functionality designed to 
 - Usage logs
 - Error logs
 - Audit/Admin logs
+- Site runtime config
 
 #### Dev
 - Granular permission system
@@ -41,6 +42,7 @@ Some actions/events in the Central section provide pubsub hooks:
 ### Todo
 - rate_limiter_plug.ex (version I copied from previous project uses ExRated which I might not need now)
 - Communication chat rooms
-- Site runtime config
 - Group configs (maybe)
 - Support for unauthed main site
+- Admin plug
+- Site search (and relevant hooks/callbacks)

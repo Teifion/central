@@ -1,4 +1,6 @@
 defmodule Central.Logging.AggregateViewLogsTask do
+  @moduledoc false
+
   use Oban.Worker, queue: :logging
 
   alias Central.Logging

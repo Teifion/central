@@ -1,4 +1,5 @@
 defmodule Central.Communication.PostLib do
+  @moduledoc false
   use CentralWeb, :library
   alias Central.Communication.Post
 

@@ -1,4 +1,5 @@
 defmodule Central.Account.Emails do
+  @moduledoc false
   import Swoosh.Email
   alias Central.Account
   alias Central.Helpers.TimexHelper

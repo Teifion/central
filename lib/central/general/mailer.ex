@@ -1,4 +1,5 @@
 defmodule Central.Mailer do
+  @moduledoc false
   use Swoosh.Mailer, otp_app: :central
 
   def noreply_address do

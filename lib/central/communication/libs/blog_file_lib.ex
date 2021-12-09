@@ -1,4 +1,5 @@
 defmodule Central.Communication.BlogFileLib do
+  @moduledoc false
   use CentralWeb, :library
 
   alias Central.Communication.BlogFile
@@ -103,17 +104,17 @@ defmodule Central.Communication.BlogFileLib do
       |> Keyword.get(:save_path)
 
     # Stat the upload
-    upload_stat = :os.cmd('stat --printf="%s" #{upload_path}')
+    {upload_stat, _} = System.cmd("stat", ["--printf=\"%s\"", upload_path])
 
     upload_path = upload_path
     filename = build_filename(the_file, filename)
     new_path = "#{the_file_save_path}/#{filename}"
 
     # Now move it
-    :os.cmd('mv "#{upload_path}" "#{new_path}";')
+    System.cmd("mv", [upload_path, new_path])
 
     # Stat the moved file
-    moved_stat = :os.cmd('stat --printf="%s" "#{new_path}"')
+    {moved_stat, _} = System.cmd("stat", ["--printf=\"%s\"", new_path])
 
     if moved_stat == upload_stat do
       {:ok, new_path, moved_stat |> to_string}
@@ -136,14 +137,13 @@ defmodule Central.Communication.BlogFileLib do
     actual_path = "#{base_path}#{file_name}"
 
     moved_stat =
-      'stat --printf="%s" "#{actual_path}"'
-      |> :os.cmd()
-      |> to_string
+      System.cmd("stat", ["--printf=\"%s\"", actual_path])
+      |> elem(0)
       |> String.slice(0..17)
 
     if moved_stat != "stat: cannot stat " do
       # Do delete
-      :os.cmd('rm "#{actual_path}"')
+      System.cmd("rm", [actual_path])
 
       # Re-call this function
       delete_file(file)
