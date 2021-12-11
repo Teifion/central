@@ -22,8 +22,11 @@ config :central, CentralWeb.Endpoint,
   secret_key_base: "dxywCOobydyDzu0gNGFE/cJ2J1OkQVQCMheiInQvBjebQND+z5stcIWX8WkBi2Xo",
   server: false
 
-# In test we don't send emails.
-config :central, Central.Mailer, adapter: Swoosh.Adapters.Test
+config :central, Central.Mailer,
+  adapter: Bamboo.TestAdapter,
+  noreply_address: "noreply@testsite.co.uk",
+  contact_address: "info@testsite.co.uk"
+
 
 # Print only warnings and errors during test
 config :logger, level: :warn

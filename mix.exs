@@ -52,7 +52,6 @@ defmodule Central.MixProject do
       {:floki, ">= 0.30.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.6"},
       {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
-      {:swoosh, "~> 1.3"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
@@ -60,6 +59,8 @@ defmodule Central.MixProject do
       {:plug_cowboy, "~> 2.5"},
 
       # Extra deps
+      {:bamboo, "~> 2.1"},
+      {:bamboo_smtp, "~> 4.0"},
       {:ecto_psql_extras, "~> 0.7"},
       {:logger_file_backend, "~> 0.0.10"},
       {:timex, "~> 3.7.5"},
