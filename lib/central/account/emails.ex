@@ -46,11 +46,12 @@ If you did not request this password reset then please ignore it. The code will 
 
     date = TimexHelper.date_to_str(Timex.now(), format: :email_date)
     message_id = UUID.uuid1()
+    subject = Application.get_env(:central, Central)[:site_title] <> " - Password reset"
 
     Email.new_email()
     |> Email.to({user.name, user.email})
     |> Email.from({Application.get_env(:central, Central.Mailer)[:noreply_name], Central.Mailer.noreply_address()})
-    |> Email.subject(Application.get_env(:central, Central)[:site_title] <> " - Password reset")
+    |> Email.subject(subject)
     |> Email.put_header("Date", date)
     |> Email.put_header("Message-Id", message_id)
     |> Email.html_body(html_body)

@@ -25,7 +25,6 @@ defmodule CentralWeb.Router do
     plug(Central.Account.AuthPipeline)
     plug(Central.Account.AuthPlug)
     plug(Central.General.CachePlug)
-    plug(Central.Admin.AdminPlug)
     plug(Central.Communication.NotificationPlug)
   end
 
