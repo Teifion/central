@@ -1,6 +1,6 @@
 <% {_fg, _bg, bsname} = colours() %>
 
-<%= form_for @changeset, Routes.admin_report_path(@conn, :update, @report), fn f -> %>
+<%= form_for @changeset, Routes.admin_report_path(@conn, :update, @report), fn _f -> %>
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
