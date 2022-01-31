@@ -54,11 +54,23 @@ Dockerfile
 /priv/certs/
 
 # Some specific things I can't share
-/priv/static/js/fontawesome.js
+*fontawesome.js
 /priv/static/js/ace
+
+# Other
+/assets/static/images/landing/*
+/assets/static/images/logo/*
+/assets/static/favicon.*
+/backups/
+/remote/
+/zignore/
+/rel/
+/source_deploy
+/source_deploy.tar.gz
+central.tar.gz
+/bin
+
 
 # Some things I plan to unignore later once I have them sorted out
 /scripts
 /bin
-
-mix.lock

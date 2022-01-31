@@ -5,7 +5,7 @@ defmodule Central.MixProject do
     [
       app: :central,
       version: "0.1.0",
-      elixir: "~> 1.12",
+      elixir: ">= 1.12.2",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
@@ -76,7 +76,8 @@ defmodule Central.MixProject do
       {:elixir_uuid, "~> 1.2"},
       {:excoveralls, "~> 0.14.1", only: :test},
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
-      {:dialyxir, "~> 1.1", only: [:dev], runtime: false}
+      {:dialyxir, "~> 1.1", only: [:dev], runtime: false},
+      {:dart_sass, "~> 0.3", only: [:dev]},
     ]
   end
 
@@ -92,7 +93,11 @@ defmodule Central.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["esbuild default --minify", "phx.digest"]
+      "assets.deploy": [
+        "esbuild default --minify",
+        "sass default --no-source-map --style=compressed",
+        "phx.digest"
+      ]
     ]
   end
 end
