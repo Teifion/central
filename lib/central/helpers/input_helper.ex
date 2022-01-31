@@ -8,7 +8,7 @@ defmodule Central.Helpers.InputHelper do
 
   @human_time_info {:safe,
                     [
-                      "<button tabindex='-1' type='button' class='btn btn-sm btn-info float-right' data-toggle='popover' data-placement='left' title='Human time' data-content='Human time (HT) allows you to write more natural text and the system will convert it into a date for you. Examples include: \"this tuesday at 5pm\", \"next weekday\", \"30 minutes\" and most normal UK date formats.'>HT Enabled</button>"
+                      "<button tabindex='-1' type='button' class='btn btn-sm btn-info float-end' data-toggle='popover' data-placement='left' title='Human time' data-content='Human time (HT) allows you to write more natural text and the system will convert it into a date for you. Examples include: \"this tuesday at 5pm\", \"next weekday\", \"30 minutes\" and most normal UK date formats.'>HT Enabled</button>"
                     ]}
 
   # http://blog.plataformatec.com.br/2016/09/dynamic-forms-with-phoenix/
@@ -43,6 +43,11 @@ defmodule Central.Helpers.InputHelper do
     wrapper_opts = [class: "form-group #{state_class(form, field)}"]
     label_opts = [class: "control-label"]
     input_opts = [class: "form-control"]
+
+    input_opts = input_opts ++ case opts[:using] do
+      :checkbox -> [class: "form-check-input"]
+      _ -> []
+    end
 
     # A bit messy but the best way I can think of doing it
     input_opts = input_opts ++ if opts[:autofocus], do: [autofocus: "autofocus"], else: []
