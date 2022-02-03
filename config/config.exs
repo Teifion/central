@@ -33,7 +33,6 @@ config :central, Central.Config,
     tz: "UTC"
   }
 
-
 # Configures the endpoint
 config :central, CentralWeb.Endpoint,
   url: [host: "localhost"],
