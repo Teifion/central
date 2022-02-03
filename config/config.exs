@@ -14,8 +14,8 @@ config :central, Extensions,
   applications: [Example.Application],
   startups: [Example.Startup],
   routers: [ExampleWeb.Router],
-  index_views: [ExampleWeb.CentralView],
-  side_views: [ExampleWeb.CentralView]
+  index_views: [ExampleWeb.General.CentralView],
+  topmenu_views: [ExampleWeb.General.CentralView]
 
 config :central, Central,
   site_title: "Central",
