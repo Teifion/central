@@ -31,18 +31,12 @@ Add other app and app_web folders to [/lib](/lib) and [/test](/test) as needed. 
 - `applications`: Each entry must be a module with a function `children/0` returning a list of children to be started as per the typical application supervisor.
 - `startups`: Each entry must be a module with a function `startup/0` which will be executed during the startup process. The application supervisor will have been started at this stage so things like the database will be accessible.
 - `index_views`: A list of views to be used on the `auth_index.html.eex` page, Each will call to render `index.eex` for the given view. Used to add icons to the homepage.
-- `sidemenu_views`: A list of views to be used on the `auth_index.html.eex` page, Each will call to render `index.eex` for the given view. Used to add icons to the side menu on admin views.
+- `topmenu_views`: A list of views to be used on the `auth_index.html.eex` page, Each will call to render `index.eex` for the given view. Used to add icons to the side menu on admin views.
 - routers (still have to be done semi manually), see `lib/central_web/router.ex` for an example of how
-
-### PubSub hooks
-Some actions/events in the Central section provide pubsub hooks:
-- [Account.create_user, update_user](lib/central/account.ex)
-- [Account.create_report, update_report](lib/central/account.ex)
 
 ### Todo
 - rate_limiter_plug.ex (version I copied from previous project uses ExRated which I might not need now)
 - Communication chat rooms
 - Group configs (maybe)
-- Support for unauthed main site
-- Admin plug
+- Support for unauthed main site, maybe with some crude CMS
 - Site search (and relevant hooks/callbacks)

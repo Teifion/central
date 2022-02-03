@@ -1,4 +1,4 @@
-<% {_fg, _bg, bsname} = colours() %>
+<% bsname = view_colours() %>
 
 
 
@@ -51,7 +51,7 @@
     value: @log.group.name
     # link: %{
     #   path: Routes.party_team_path(@conn, :show, @log.team_id),
-    #   bsname: elem(Central.Account.GroupLib.colours(), 2),
+    #   bsname: elem(Central.Account.GroupLib.view_colours(), 2),
     #   icon: Central.Account.GroupLib.icon(),
     # }
   %>
@@ -72,7 +72,7 @@
     value: @log.user.name,
     link: %{
       path: Routes.admin_user_path(@conn, :show, @log.user_id),
-      bsname: elem(Central.Account.UserLib.colours(), 2),
+      bsname: elem(Central.Account.UserLib.view_colours(), 2),
       icon: Central.Account.UserLib.icon(),
     }
   %>

@@ -1,4 +1,4 @@
-<% {_fg, _bg, bsname} = colours() %>
+<% bsname = view_colours() %>
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
@@ -96,7 +96,7 @@
           <tbody>
             <%= for row <- @results[:headline] do %>
               <%
-                {cfg, cbg, _cbsname} = Central.Admin.ToolLib.coverage_colours(row.coverage)
+                {cfg, cbg, _cbsname} = Central.Admin.ToolLib.coverage_view_colours(row.coverage)
                 section_id = String.replace(row.section, "/", "__")
               %>
 
@@ -123,7 +123,7 @@
             <% end %>
 
             <tr class="final-row">
-              <% {cfg, cbg, _cbsname} = Central.Admin.ToolLib.coverage_colours(@results[:project].coverage) %>
+              <% {cfg, cbg, _cbsname} = Central.Admin.ToolLib.coverage_view_colours(@results[:project].coverage) %>
 
               <td style={"color: #333; border-left: 10px solid #{cfg}; background-color: #{cbg};"}>
                 &nbsp;&nbsp;&nbsp;&nbsp;

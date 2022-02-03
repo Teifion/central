@@ -1,11 +1,11 @@
 defmodule CentralWeb.Account.GeneralView do
   use CentralWeb, :view
 
-  @spec colours :: {String.t(), String.t(), String.t()}
-  def colours(), do: Central.Helpers.StylingHelper.colours(:info2)
+  @spec view_colours :: atom
+  def view_colours(), do: :info2
 
-  @spec colours(String.t()) :: {String.t(), String.t(), String.t()}
-  def colours("groups"), do: Central.Account.GroupLib.colours()
-  def colours("user_configs"), do: Central.Config.UserConfigLib.colours()
-  def colours("reports"), do: Central.Account.ReportLib.colours()
+  @spec view_colours(String.t()) :: {String.t(), String.t(), String.t()}
+  def view_colours("groups"), do: Central.Account.GroupLib.colours()
+  def view_colours("user_configs"), do: Central.Config.UserConfigLib.colours()
+  def view_colours("reports"), do: Central.Account.ReportLib.colours()
 end

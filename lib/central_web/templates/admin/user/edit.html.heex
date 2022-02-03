@@ -1,4 +1,4 @@
-<% {_fg, _bg, bsname} = colours() %>
+<% bsname = view_colours() %>
 
 <%= render CentralWeb.Admin.GeneralView, "sub_menu.html", Map.merge(assigns, %{active: "user"}) %>
 
@@ -31,7 +31,7 @@
   </div>
 
   <div class="col-lg-12 col-xl-6">
-    <div class={"card page-card card-#{elem(Central.Config.UserConfigLib.colours(), 2)}"}>
+    <div class={"card page-card card-#{elem(Central.Config.UserConfigLib.view_colours(), 2)}"}>
       <div class="card-body">
         <h4>Configs</h4>
         <table class="table">
@@ -72,7 +72,7 @@
               </td>
 
               <td>
-                <input type="submit" value="Add config" name="form.submitted" class={"btn btn-#{elem(Central.Config.UserConfigLib.colours(),2)} bbtn-sm btn-block"} />
+                <input type="submit" value="Add config" name="form.submitted" class={"btn btn-#{elem(Central.Config.UserConfigLib.view_colours(),2)} bbtn-sm btn-block"} />
               </td>
             </form>
 

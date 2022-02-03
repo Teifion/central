@@ -26,8 +26,10 @@ defmodule Central.Helpers.StylingHelper do
 
   @spec get_fg(atom) :: String.t()
   def get_fg(colour), do: elem(colours(colour), 0)
+
   @spec get_bg(atom) :: String.t()
   def get_bg(colour), do: elem(colours(colour), 1)
+
   @spec get_bsname(atom) :: String.t()
   def get_bsname(colour), do: elem(colours(colour), 2)
 

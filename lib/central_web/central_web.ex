@@ -61,6 +61,7 @@ defmodule CentralWeb do
 
       import Central.Helpers.StringHelper
       alias Central.Helpers.StylingHelper
+      import Central.Helpers.StylingHelper, only: [colours: 1]
 
       alias Central.Helpers.ColourHelper
       import Central.Helpers.ColourHelper, only: [rgba_css: 1, rgba_css: 2]

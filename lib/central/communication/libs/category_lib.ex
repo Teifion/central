@@ -4,7 +4,10 @@ defmodule Central.Communication.CategoryLib do
 
   alias Central.Communication.Category
 
-  def colours(), do: Central.Helpers.StylingHelper.colours(:success)
+  @spec colours() :: atom
+  def colours(), do: :success
+
+  @spec icon() :: String.t()
   def icon(), do: "far fa-indent"
 
   # Queries

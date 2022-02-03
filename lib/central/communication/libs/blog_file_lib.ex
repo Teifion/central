@@ -4,7 +4,10 @@ defmodule Central.Communication.BlogFileLib do
 
   alias Central.Communication.BlogFile
 
-  def colours(), do: Central.Helpers.StylingHelper.colours(:warning2)
+  @spec colours() :: atom
+  def colours(), do: :warning2
+
+  @spec icon() :: String.t()
   def icon(), do: "far fa-file"
 
   # Queries

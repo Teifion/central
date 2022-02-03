@@ -5,8 +5,8 @@ defmodule Central.Account.GroupLib do
   alias Central.Account.Group
   alias Central.Account.GroupMembership
 
-  @spec colours :: {String.t(), String.t(), String.t()}
-  def colours(), do: Central.Helpers.StylingHelper.colours(:primary2)
+  @spec colours :: atom
+  def colours(), do: :primary2
 
   @spec icon :: String.t()
   def icon(), do: "far fa-users"
