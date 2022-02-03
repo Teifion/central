@@ -11,6 +11,20 @@ defmodule Central.Account.GroupLib do
   @spec icon :: String.t()
   def icon(), do: "far fa-users"
 
+  @spec make_favourite(Group.t()) :: Map.t()
+  def make_favourite(group) do
+    %{
+      type_colour: StylingHelper.colours(colours()) |> elem(0),
+      type_icon: icon(),
+      item_id: group.id,
+      item_type: "central_group",
+      item_colour: group.colour,
+      item_icon: group.icon,
+      item_label: "#{group.name}",
+      url: "/admin/groups/#{group.id}"
+    }
+  end
+
   @spec get_groups() :: Ecto.Query.t()
   def get_groups do
     from(groups in Group)
@@ -312,6 +326,7 @@ defmodule Central.Account.GroupLib do
     |> Central.Helpers.QueryHelpers.select([:id, :name, :icon, :colour])
     |> order("Name (A-Z)")
     |> Repo.all()
+    # |> Enum.map(fn %{id: id, name: name} -> {name, id} end)
   end
 
   # # Functions for using the group system with other objects

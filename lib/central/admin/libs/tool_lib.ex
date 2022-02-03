@@ -8,6 +8,7 @@ defmodule Central.Admin.ToolLib do
   @spec icon :: String.t()
   def icon(), do: "far fa-tools"
 
+  @spec coverage_colours(integer()) :: {String.t(), String.t(), String.t()}
   def coverage_colours(value) do
     cond do
       value < 5 -> :danger2
@@ -21,6 +22,7 @@ defmodule Central.Admin.ToolLib do
     |> Central.Helpers.StylingHelper.colours()
   end
 
+  @spec get_oban_jobs() :: list()
   def get_oban_jobs() do
     query =
       from jobs in Oban.Job,

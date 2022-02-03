@@ -1,7 +1,7 @@
 {
   "skip_files": [
-    "lib/central/*",
-    "lib/central_web/*",
+    "_lib/central/*",
+    "_lib/central_web/*",
     "^test/.*",
     "^/.*_web.ex",
     ".*_test_lib.ex"

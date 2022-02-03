@@ -1,8 +1,8 @@
 defmodule CentralWeb.Account.UserView do
   use CentralWeb, :view
 
-  @spec view_colours :: {String.t(), String.t(), String.t()}
-  def view_colours, do: Central.Helpers.StylingHelper.colours(:success)
+  @spec view_colour :: atom
+  def view_colour, do: :success
 
   @spec icon :: String.t()
   def icon, do: "fas fa-user"

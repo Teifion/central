@@ -39,7 +39,8 @@ defmodule Central.Helpers.StylingHelper do
   def icon(:back), do: "fas fa-arrow-left"
 
   def icon(:list), do: "fal fa-bars"
-  def icon(:search), do: "fal fa-magnifying-glass"
+  def icon(:show), do: "fal fa-eye"
+  def icon(:search), do: "fal fa-search"
   def icon(:new), do: "fal fa-plus"
   def icon(:edit), do: "fal fa-wrench"
   def icon(:delete), do: "fal fa-trash"

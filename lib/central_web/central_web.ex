@@ -130,6 +130,7 @@ defmodule CentralWeb do
 
       import Central.Helpers.QueryHelpers
       import Central.Account.AuthLib, only: [allow?: 2, allow_any?: 2]
+      alias Central.Helpers.StylingHelper
     end
   end
 

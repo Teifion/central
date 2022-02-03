@@ -1,4 +1,4 @@
-<% bsname = view_colours() %>
+<% bsname = view_colour() %>
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
@@ -25,7 +25,7 @@
           permissions: @current_user.permissions,
           show_search: false,
           quick_search: @conn.params["s"],
-          active: if @conn.params["search"] != nil, do: "search", else: "index"
+          active: if @conn.params["search"] != nil, do: "search", else: "list"
         %>
 
 <%= if @conn.params["search"] != nil do %>

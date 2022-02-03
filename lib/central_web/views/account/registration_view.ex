@@ -1,6 +1,6 @@
 defmodule CentralWeb.Account.RegistrationView do
   use CentralWeb, :view
 
-  @spec view_colours :: {String.t(), String.t(), String.t()}
-  def view_colours, do: Central.Helpers.StylingHelper.colours(:primary)
+  @spec view_colour :: atom
+  def view_colour, do: :primary
 end

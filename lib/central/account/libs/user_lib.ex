@@ -14,7 +14,7 @@ defmodule Central.Account.UserLib do
   @spec make_favourite(User.t()) :: Map.t()
   def make_favourite(user) do
     %{
-      type_colour: colours() |> elem(0),
+      type_colour: StylingHelper.colours(colours()) |> elem(0),
       type_icon: icon(),
       item_id: user.id,
       item_type: "central_user",
