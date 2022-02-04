@@ -130,8 +130,13 @@ defmodule Central.Helpers.StylingHelper do
     Enum.random(@random_icons)
   end
 
+  # If you are using a dark theme it's probably best to call the light list
   @spec hex_colour_list() :: [String.t()]
-  def hex_colour_list() do
+  def hex_colour_list(), do: light_hex_colour_list()
+
+  # For light mode, darker colours
+  @spec dark_hex_colour_list() :: [String.t()]
+  def dark_hex_colour_list() do
     [
       "#AA3333",
       "#990505",
@@ -148,6 +153,28 @@ defmodule Central.Helpers.StylingHelper do
       "#00978C",
       "#000000",
       "#444455"
+    ]
+  end
+
+  # For dark mode, lighter colours
+  @spec light_hex_colour_list() :: [String.t()]
+  def light_hex_colour_list() do
+    [
+      "#FF7777",
+      "#CC4433",
+      "#FFCC00",
+      "#DD8833",
+      "#AA5522",
+      "#33CC33",
+      "#00AA00",
+      "#8888FF",
+      "#3344FF",
+      "#FF44FF",
+      "#C82261",
+      "#33AACC",
+      "#00878C",
+      "#FFFFFF",
+      "#9999AA"
     ]
   end
 
