@@ -338,6 +338,7 @@ input[type="color"] {
   padding: 0.2rem;
 }
 
+
 .select2-selection {
   border-color: $gray-700 !important;
 }
@@ -349,4 +350,8 @@ input[type="color"] {
 
 .select2-search__field {
   background-color: $input-bg;
+}
+
+.text-invert {
+  color: $dark;
 }
