@@ -16,9 +16,10 @@
 <%
   is_active = @active == @name
 
-  icon = case @icon do
-    %{icon: icon} -> icon
-    icon -> icon
+  icon = if Kernel.function_exported?(@icon, :icon, 0) do
+    @icon.icon()
+  else
+    @icon
   end
 
   icon = if is_active do
