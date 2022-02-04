@@ -8,13 +8,13 @@ defmodule CentralWeb.Admin.GeneralView do
     @build_time_priv
   end
 
-  @spec view_colour :: {String.t(), String.t(), String.t()}
-  def view_colour(), do: Central.Admin.AdminLib.colours()
+  @spec view_colour :: atom
+  def view_colour(), do: :default
 
   @spec icon() :: String.t()
   def icon(), do: Central.Admin.AdminLib.icon()
 
-  @spec view_colour(String.t()) :: {String.t(), String.t(), String.t()}
+  @spec view_colour(String.t()) :: atom
   def view_colour("user"), do: Central.Account.UserLib.colours()
   def view_colour("group"), do: Central.Account.GroupLib.colours()
   def view_colour("reports"), do: Central.Account.ReportLib.colours()

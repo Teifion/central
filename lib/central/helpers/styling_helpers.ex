@@ -56,15 +56,6 @@ defmodule Central.Helpers.StylingHelper do
 
   def icon(:summary), do: "fal fa-user-chart"
 
-  # This allows us to pass the function as a fake module for things
-  # like sub_menu_icon
-  def report_mod() do
-    %{
-      icon: icon(:report),
-      colours: colours(:report)
-    }
-  end
-
   # defp split_colour(c) do
   #   {r, _} = c |> String.slice(1, 2) |> Integer.parse(16)
   #   {g, _} = c |> String.slice(3, 2) |> Integer.parse(16)

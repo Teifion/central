@@ -27,7 +27,7 @@
               label: "Page view",
               active: @active,
               url: Routes.logging_page_view_log_path(@conn, :index),
-              icon: Central.Logging.PageViewLogLib
+              icon: Central.Logging.PageViewLogLib.icon()
             %>
           <% end %>
 
@@ -37,7 +37,7 @@
               label: "Aggregate",
               active: @active,
               url: Routes.logging_aggregate_view_log_path(@conn, :index),
-              icon: Central.Logging.AggregateViewLogLib
+              icon: Central.Logging.AggregateViewLogLib.icon()
             %>
           <% end %>
 
@@ -47,7 +47,7 @@
               label: "Audit",
               active: @active,
               url: Routes.logging_audit_log_path(@conn, :index),
-              icon: Central.Logging.AuditLogLib
+              icon: Central.Logging.AuditLogLib.icon()
             %>
           <% end %>
 
@@ -57,7 +57,7 @@
               label: "Error",
               active: @active,
               url: Routes.logging_error_log_path(@conn, :index),
-              icon: Central.Logging.ErrorLogLib
+              icon: Central.Logging.ErrorLogLib.icon()
             %>
           <% end %>
 
@@ -76,7 +76,7 @@
             label: "Reports",
             active: @active,
             url: Routes.logging_report_path(@conn, :index),
-            icon: Central.Helpers.StylingHelper.report_mod()
+            icon: Central.Helpers.StylingHelper.icon(:report)
           %>
 
         </div>
