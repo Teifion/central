@@ -69,7 +69,7 @@ defmodule Central.Communication.PostLib do
       where: posts.id in ^id_list
   end
 
-  def _search(query, :simple_search, ref) do
+  def _search(query, :basic_search, ref) do
     ref_like = "%" <> String.replace(ref, "*", "%") <> "%"
 
     from posts in query,

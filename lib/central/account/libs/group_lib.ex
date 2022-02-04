@@ -103,7 +103,7 @@ defmodule Central.Account.GroupLib do
       where: ilike(groups.name, ^ref_like)
   end
 
-  def _search(query, :simple_search, ref) do
+  def _search(query, :basic_search, ref) do
     ref_like = "%" <> String.replace(ref, "*", "%") <> "%"
 
     from groups in query,

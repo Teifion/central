@@ -58,7 +58,7 @@ defmodule Central.Communication.CategoryLib do
       where: categories.id in ^id_list
   end
 
-  def _search(query, :simple_search, ref) do
+  def _search(query, :basic_search, ref) do
     ref_like = "%" <> String.replace(ref, "*", "%") <> "%"
 
     from categories in query,

@@ -58,7 +58,7 @@ defmodule Central.Communication.BlogFileLib do
       where: blog_files.id in ^id_list
   end
 
-  def _search(query, :simple_search, ref) do
+  def _search(query, :basic_search, ref) do
     ref_like = "%" <> String.replace(ref, "*", "%") <> "%"
 
     from blog_files in query,
