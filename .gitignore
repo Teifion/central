@@ -54,7 +54,9 @@ Dockerfile
 /priv/certs/
 
 # Some specific things I can't share
+/priv/static/webfonts/fa-*
 *fontawesome.js
+*fontawesome.css
 /priv/static/js/ace
 
 # Other
