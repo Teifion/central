@@ -34,27 +34,30 @@ defmodule Central.Helpers.StylingHelper do
   def get_bsname(colour), do: elem(colours(colour), 2)
 
   @spec icon(atom) :: String.t()
-  def icon(:report), do: "fas fa-signal"
-  def icon(:up), do: "fas fa-level-up"
-  def icon(:back), do: "fas fa-arrow-left"
+  def icon(atom), do: icon(atom, "solid")
 
-  def icon(:list), do: "fal fa-bars"
-  def icon(:show), do: "fal fa-eye"
-  def icon(:search), do: "fal fa-search"
-  def icon(:new), do: "fal fa-plus"
-  def icon(:edit), do: "fal fa-wrench"
-  def icon(:delete), do: "fal fa-trash"
-  def icon(:export), do: "fal fa-download"
-  def icon(:structure), do: "fal fa-cubes"
-  def icon(:documentation), do: "fas fa-book"
+  @spec icon(atom, String.t()) :: String.t()
+  def icon(:report, fa_type), do: "fa-#{fa_type} fa-signal"
+  def icon(:up, fa_type), do: "fa-#{fa_type} fa-level-up"
+  def icon(:back, fa_type), do: "fa-#{fa_type} fa-arrow-left"
 
-  def icon(:admin), do: "fas fa-user-crown"
-  def icon(:moderation), do: "fas fa-gavel"
+  def icon(:list, fa_type), do: "fa-#{fa_type} fa-bars"
+  def icon(:show, fa_type), do: "fa-#{fa_type} fa-eye"
+  def icon(:search, fa_type), do: "fa-#{fa_type} fa-search"
+  def icon(:new, fa_type), do: "fa-#{fa_type} fa-plus"
+  def icon(:edit, fa_type), do: "fa-#{fa_type} fa-wrench"
+  def icon(:delete, fa_type), do: "fa-#{fa_type} fa-trash"
+  def icon(:export, fa_type), do: "fa-#{fa_type} fa-download"
+  def icon(:structure, fa_type), do: "fa-#{fa_type} fa-cubes"
+  def icon(:documentation, fa_type), do: "fa-#{fa_type} fa-book"
 
-  def icon(:overview), do: "fal fa-expand-alt"
-  def icon(:detail), do: "fal fa-eye"
+  def icon(:admin, fa_type), do: "fa-#{fa_type} fa-user-crown"
+  def icon(:moderation, fa_type), do: "fa-#{fa_type} fa-gavel"
 
-  def icon(:summary), do: "fal fa-user-chart"
+  def icon(:overview, fa_type), do: "fa-#{fa_type} fa-expand-alt"
+  def icon(:detail, fa_type), do: "fa-#{fa_type} fa-eye"
+
+  def icon(:summary, fa_type), do: "fa-#{fa_type} fa-user-chart"
 
   # defp split_colour(c) do
   #   {r, _} = c |> String.slice(1, 2) |> Integer.parse(16)

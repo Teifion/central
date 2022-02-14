@@ -15,7 +15,7 @@
   name: "list",
   label: "List",
   active: @active,
-  icon: StylingHelper.icon(:list),
+  icon: StylingHelper.icon(:list, "thin"),
   bsname: bsname,
   url: Routes.admin_user_path(@conn, :index)
 %>
@@ -24,7 +24,7 @@
   name: "search",
   label: "Search",
   active: @active,
-  icon: StylingHelper.icon(:search),
+  icon: StylingHelper.icon(:search, "thin"),
   bsname: bsname,
   url: Routes.admin_user_path(@conn, :index) <> "?search=true"
 %>
@@ -33,7 +33,7 @@
   name: "new",
   label: "New",
   active: @active,
-  icon: StylingHelper.icon(:new),
+  icon: StylingHelper.icon(:new, "thin"),
   bsname: bsname,
   url: Routes.admin_user_path(@conn, :new)
 %>
@@ -44,7 +44,7 @@
       name: "show",
       label: "Show",
       active: @active,
-      icon: StylingHelper.icon(:show),
+      icon: StylingHelper.icon(:show, "thin"),
       bsname: bsname,
       url: "#"
     %>
