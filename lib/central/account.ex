@@ -254,13 +254,8 @@ defmodule Central.Account do
     if User.verify_password(plain_text_password, user.password) do
       {:ok, user}
     else
-      add_anonymous_audit_log(conn, "Account: Failed login", %{
-        reason: "Bad password",
-        user_id: user.id,
-        email: user.email
-      })
-
-      {:error, "Invalid credentials"}
+      # Authentication failure handler
+      login_failure(conn, user)
     end
   end
 
@@ -276,6 +271,16 @@ defmodule Central.Account do
       user ->
         authenticate_user(conn, user, plain_text_password)
     end
+  end
+
+  def login_failure(conn, user) do
+    add_anonymous_audit_log(conn, "Account: Failed login", %{
+      reason: "Bad password",
+      user_id: user.id,
+      email: user.email
+    })
+
+    {:error, "Invalid credentials"}
   end
 
   def user_as_json(users) when is_list(users) do
@@ -885,6 +890,23 @@ defmodule Central.Account do
   def get_report!(id, args) do
     report_query(id, args)
     |> Repo.one!()
+  end
+
+
+
+  def get_report(id) when not is_list(id) do
+    report_query(id, [])
+    |> Repo.one()
+  end
+
+  def get_report(args) do
+    report_query(nil, args)
+    |> Repo.one()
+  end
+
+  def get_report(id, args) do
+    report_query(id, args)
+    |> Repo.one()
   end
 
   # Uncomment this if needed, default files do not need this function
