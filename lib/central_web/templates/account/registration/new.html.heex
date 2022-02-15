@@ -39,6 +39,8 @@
   <% end %>
 
   <div class="form-group mt-3">
+    <input type='hidden' name='user[code]' id='user_code' value={@code} class='form-control' />
+  
     <%= label f, :name, class: "control-label" %>
     <%= text_input f, :name, class: "form-control", required: "", autofocus: "autofocus" %>
     <%= error_tag f, :name %>

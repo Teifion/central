@@ -4,7 +4,7 @@ A phoenix application containing basic user and admin functionality designed to 
 ### Features
 #### User
 - User signup, profile, password reset
-- Group membership
+- Group membership with invite system
 - User configs
 - Recently used
 
