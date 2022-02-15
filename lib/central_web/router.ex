@@ -133,6 +133,7 @@ defmodule CentralWeb.Router do
   scope "/account", CentralWeb.Account, as: :account do
     pipe_through([:browser, :standard_layout])
 
+    get("/registrations/new/:code", RegistrationController, :new)
     get("/registrations/new", RegistrationController, :new)
     post("/registrations/create", RegistrationController, :create)
   end

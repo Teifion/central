@@ -7,15 +7,54 @@ defmodule CentralWeb.Account.RegistrationController do
   plug AssignPlug,
     sidemenu_active: "account"
 
-  def new(conn, _params) do
-    changeset = Account.change_user(%User{})
+  @spec new(Plug.Conn.t(), map()) :: Plug.Conn.t()
+  def new(conn, params) do
+    config_setting = Application.get_env(:central, Central)[:user_registrations]
 
-    conn
-    |> assign(:changeset, changeset)
-    |> put_layout("empty.html")
-    |> render("new.html")
+    {allowed, reason} = cond do
+      config_setting == :allowed ->
+        {true, nil}
+
+      config_setting == :disabled ->
+        {false, "disabled"}
+
+      config_setting == :link_only ->
+        code = Account.get_code(params["code"] || "!no_code!")
+
+        cond do
+          code == nil ->
+            {false, "no_code"}
+
+          code.purpose != "user_registration" ->
+            {false, "invalid_code"}
+
+          Timex.compare(Timex.now(), code.expires) == 1 ->
+            {false, "expired_code"}
+
+          true ->
+            {true, nil}
+        end
+
+      true ->
+        {false, "disabled"}
+    end
+
+    if allowed do
+      changeset = Account.change_user(%User{})
+
+      conn
+      |> assign(:changeset, changeset)
+      |> put_layout("empty.html")
+      |> render("new.html")
+    else
+      conn
+      |> assign(:reason, reason)
+      |> put_layout("empty.html")
+      |> render("invalid.html")
+    end
   end
 
+  @spec create(Plug.Conn.t(), map()) :: Plug.Conn.t()
   def create(conn, %{"user" => user_params}) do
     user_params = Account.merge_default_params(user_params)
 
@@ -33,6 +72,7 @@ defmodule CentralWeb.Account.RegistrationController do
     end
   end
 
+  @spec edit_details(Plug.Conn.t(), map()) :: Plug.Conn.t()
   def edit_details(conn, _params) do
     user = Account.get_user!(conn.user_id)
     changeset = Account.change_user(user)
@@ -43,6 +83,7 @@ defmodule CentralWeb.Account.RegistrationController do
     |> render("edit_details.html")
   end
 
+  @spec edit_password(Plug.Conn.t(), map()) :: Plug.Conn.t()
   def edit_password(conn, _params) do
     user = Account.get_user!(conn.user_id)
     changeset = Account.change_user(user)
@@ -53,6 +94,7 @@ defmodule CentralWeb.Account.RegistrationController do
     |> render("edit_password.html")
   end
 
+  @spec update_details(Plug.Conn.t(), map()) :: Plug.Conn.t()
   def update_details(conn, %{"user" => user_params}) do
     user = Account.get_user!(conn.user_id)
     user_params = Map.put(user_params, "password", user_params["password_confirmation"])
@@ -68,6 +110,7 @@ defmodule CentralWeb.Account.RegistrationController do
     end
   end
 
+  @spec update_password(Plug.Conn.t(), map()) :: Plug.Conn.t()
   def update_password(conn, %{"user" => user_params}) do
     user = Account.get_user!(conn.user_id)
 

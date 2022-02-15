@@ -19,13 +19,20 @@ config :central, Extensions,
 
 config :central, Central,
   site_title: "Central",
+  site_suffix: " · Central",
   site_description: "Description goes here",
   site_icon: "fas fa-broadcast-tower",
   enable_blog: true,
   blog_title: "Site blog",
   # This is used for the coverage tool
   file_path: "~/programming/central/",
-  credit: "Your name here"
+  credit: "Your name here",
+
+  # :allowed, :link_only, :disabled
+  user_registrations: :link_only,
+
+  # If you have a secondary site put the link here (string)
+  main_site_link: nil
 
 # Default configs
 config :central, Central.Config,

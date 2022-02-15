@@ -64,17 +64,20 @@ defmodule Central.Account do
   def get_user!(id) when not is_list(id) do
     ConCache.get_or_store(:account_user_cache_bang, id, fn ->
       user_query(id, [])
+      |> QueryHelpers.limit_query(1)
       |> Repo.one!()
     end)
   end
 
   def get_user!(args) do
     user_query(nil, args)
+    |> QueryHelpers.limit_query(args[:limit] || 1)
     |> Repo.one!()
   end
 
   def get_user!(id, args) do
     user_query(id, args)
+    |> QueryHelpers.limit_query(args[:limit] || 1)
     |> Repo.one!()
   end
 
@@ -585,11 +588,13 @@ defmodule Central.Account do
   """
   def get_code(value, args \\ []) do
     code_query(value, args)
+    |> QueryHelpers.limit_query(args[:limit] || 1)
     |> Repo.one()
   end
 
   def get_code!(value, args \\ []) do
     code_query(value, args)
+    |> QueryHelpers.limit_query(args[:limit] || 1)
     |> Repo.one!()
   end
 
