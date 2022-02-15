@@ -7,6 +7,7 @@ defmodule Central.Account do
   alias Central.Helpers.QueryHelpers
   alias Phoenix.PubSub
   alias Central.Repo
+  alias Central.Types, as: T
 
   alias Argon2
 
@@ -477,10 +478,20 @@ defmodule Central.Account do
       ** (Ecto.NoResultsError)
 
   """
+  @spec get_group_membership!(T.user_id(), T.group_id()) :: GroupMembership.t()
   def get_group_membership!(user_id, group_id) do
     GroupMembershipLib.get_group_memberships()
     |> GroupMembershipLib.search(user_id: user_id, group_id: group_id)
+    |> QueryHelpers.limit_query(1)
     |> Repo.one!()
+  end
+
+  @spec get_group_membership(T.user_id(), T.group_id()) :: GroupMembership.t() | nil
+  def get_group_membership(user_id, group_id) do
+    GroupMembershipLib.get_group_memberships()
+    |> GroupMembershipLib.search(user_id: user_id, group_id: group_id)
+    |> QueryHelpers.limit_query(1)
+    |> Repo.one()
   end
 
   def create_group_membership(attrs \\ %{}) do
@@ -539,6 +550,139 @@ defmodule Central.Account do
   """
   def change_group_membership(%GroupMembership{} = group_membership) do
     GroupMembership.changeset(group_membership, %{})
+  end
+
+  alias Central.Account.{GroupInvite, GroupInviteLib}
+
+  @doc """
+  Returns the list of group_invites.
+
+  ## Examples
+
+      iex> list_group_invites()
+      [%Location{}, ...]
+
+  """
+  def list_group_invites_by_group(group_id, args \\ []) do
+    GroupInviteLib.get_group_invites()
+    |> GroupInviteLib.search(group_id: group_id)
+    |> GroupInviteLib.search(args[:search])
+    |> GroupInviteLib.preload(args[:joins])
+    # |> GroupInviteLib.order_by(args[:order_by])
+    |> QueryHelpers.select(args[:select])
+    |> Repo.all()
+  end
+
+  def list_group_invites_by_user(user_id, args \\ []) do
+    GroupInviteLib.get_group_invites()
+    |> GroupInviteLib.search(user_id: user_id)
+    |> GroupInviteLib.search(args[:search])
+    |> GroupInviteLib.preload(args[:joins])
+    # |> GroupInviteLib.order_by(args[:order_by])
+    |> QueryHelpers.select(args[:select])
+    |> Repo.all()
+  end
+
+  @doc """
+  Gets a single group_invite.
+
+  Raises `Ecto.NoResultsError` if the GroupInvite does not exist.
+
+  ## Examples
+
+      iex> get_group_invite!(123)
+      %GroupInvite{}
+
+      iex> get_group_invite!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  @spec get_group_invite!(T.user_id(), T.group_id()) :: GroupInvite.t()
+  def get_group_invite!(user_id, group_id) do
+    GroupInviteLib.get_group_invites()
+    |> GroupInviteLib.search(%{group_id: group_id, user_id: user_id})
+    |> Repo.one!()
+  end
+
+  @spec get_group_invite(T.user_id(), T.group_id()) :: GroupInvite.t() | nil
+  def get_group_invite(user_id, group_id) do
+    GroupInviteLib.get_group_invites()
+    |> GroupInviteLib.search(%{group_id: group_id, user_id: user_id})
+    |> Repo.one()
+  end
+
+  @doc """
+  Creates a group_invite.
+
+  ## Examples
+
+      iex> create_group_invite(%{field: value})
+      {:ok, %GroupInvite{}}
+
+      iex> create_group_invite(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_group_invite(attrs) do
+    %GroupInvite{}
+    |> GroupInvite.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  def create_group_invite(group_id, user_id) do
+    %GroupInvite{}
+    |> GroupInvite.changeset(%{
+      group_id: group_id,
+      user_id: user_id
+    })
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a GroupInvite.
+
+  ## Examples
+
+      iex> update_group_invite(group_invite, %{field: new_value})
+      {:ok, %Ruleset{}}
+
+      iex> update_group_invite(group_invite, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_group_invite(%GroupInvite{} = group_invite, attrs) do
+    group_invite
+    |> GroupInvite.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a GroupInvite.
+
+  ## Examples
+
+      iex> delete_group_invite(group_invite)
+      {:ok, %GroupInvite{}}
+
+      iex> delete_group_invite(group_invite)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_group_invite(%GroupInvite{} = group_invite) do
+    Repo.delete(group_invite)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking group_invite changes.
+
+  ## Examples
+
+      iex> change_group_invite(group_invite)
+      %Ecto.Changeset{source: %GroupInvite{}}
+
+  """
+  def change_group_invite(%GroupInvite{} = group_invite) do
+    GroupInvite.changeset(group_invite, %{})
   end
 
   alias Central.Account.Code
