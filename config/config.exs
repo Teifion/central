@@ -24,8 +24,6 @@ config :central, Central,
   site_icon: "fas fa-broadcast-tower",
   enable_blog: true,
   blog_title: "Site blog",
-  # This is used for the coverage tool
-  file_path: "~/programming/central/",
   credit: "Your name here",
 
   # :allowed, :link_only, :disabled
