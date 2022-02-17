@@ -1,9 +1,0 @@
-<%= if allow?(@current_user, "example") do %>
-  <%= central_component "sidemenu_item",
-    name: "example",
-    label: "Example",
-    active: assigns[:sidemenu_active],
-    icon: "fad fa-home",
-    url: "example_url"
-  %>
-<% end %>

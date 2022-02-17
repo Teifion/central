@@ -39,6 +39,11 @@ defmodule CentralWeb.Router do
     plug(:put_layout, {CentralWeb.LayoutView, "standard.html"})
   end
 
+  pipeline :standard_live_layout do
+    plug :put_root_layout, {CentralWeb.LayoutView, :root}
+    plug(:put_layout, {CentralWeb.LayoutView, "standard_live.html"})
+  end
+
   pipeline :nomenu_layout do
     plug :put_root_layout, {CentralWeb.LayoutView, :root}
     plug(:put_layout, {CentralWeb.LayoutView, "nomenu.html"})
