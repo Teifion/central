@@ -347,21 +347,25 @@ defmodule Central.Account do
   """
   def get_group!(id) when not is_list(id) do
     group_query(id, [])
+    |> QueryHelpers.limit_query(1)
     |> Repo.one!()
   end
 
   def get_group!(args) do
     group_query(nil, args)
+    |> QueryHelpers.limit_query(args[:limit] || 1)
     |> Repo.one!()
   end
 
   def get_group!(id, args) do
     group_query(id, args)
+    |> QueryHelpers.limit_query(args[:limit] || 1)
     |> Repo.one!()
   end
 
   def get_group(id, args \\ []) when not is_list(id) do
     group_query(id, args)
+    |> QueryHelpers.limit_query(args[:limit] || 1)
     |> Repo.one()
   end
 

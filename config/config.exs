@@ -30,7 +30,7 @@ config :central, Central,
   enabled_account_group_pages: true,
 
   # :allowed, :link_only, :disabled
-  user_registrations: :link_only,
+  user_registrations: :disabled,
 
   # If you have a secondary site put the link here (string)
   main_site_link: nil

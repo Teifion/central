@@ -122,6 +122,7 @@ defmodule CentralWeb.Router do
     delete("/groups/delete_membership/:group_id/:user_id", GroupController, :delete_membership)
     put("/groups/update_membership/:group_id/:user_id", GroupController, :update_membership)
 
+    post("/groups/create_membership", GroupController, :create_membership)
     post("/groups/create_invite", GroupController, :create_invite)
     delete("/groups/delete_invite/:group_id/:user_id", GroupController, :delete_invite)
     put("/groups/respond_to_invite/:group_id/:response", GroupController, :respond_to_invite)
