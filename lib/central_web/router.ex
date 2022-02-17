@@ -269,6 +269,8 @@ defmodule CentralWeb.Router do
 
     # Codes
     resources("/codes", CodeController)
+    put("/codes/extend/:id/:hours", CodeController, :extend)
+
 
     # Config
     resources("/site", SiteConfigController, only: [:index, :edit, :update, :delete])
