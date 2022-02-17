@@ -236,7 +236,7 @@ defmodule Central.Config do
 
   def get_user_config_default(key) do
     case get_user_config_type(key) do
-      nil -> throw("Invalid config key of #{key}")
+      nil -> raise "Invalid config key of #{key}"
       v -> Map.get(v, :default)
     end
   end
@@ -376,7 +376,7 @@ defmodule Central.Config do
 
   def get_site_config_default(key) do
     case get_site_config_type(key) do
-      nil -> throw("Invalid config key of #{key}")
+      nil -> raise "Invalid config key of #{key}"
       v -> Map.get(v, :default)
     end
   end

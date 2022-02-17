@@ -216,7 +216,7 @@ defmodule CentralWeb.Account.SessionController do
             |> redirect(to: "/")
 
           {:error, _changeset} ->
-            throw("Error updating user password from password reset form")
+            raise "Error updating user password from password reset form"
         end
     end
   end
