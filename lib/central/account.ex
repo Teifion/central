@@ -221,21 +221,21 @@ defmodule Central.Account do
     |> broadcast_update_user
   end
 
-  @doc """
-  Deletes a User.
+  # @doc """
+  # Deletes a User.
 
-  ## Examples
+  # ## Examples
 
-      iex> delete_user(user)
-      {:ok, %User{}}
+  #     iex> delete_user(user)
+  #     {:ok, %User{}}
 
-      iex> delete_user(user)
-      {:error, %Ecto.Changeset{}}
+  #     iex> delete_user(user)
+  #     {:error, %Ecto.Changeset{}}
 
-  """
-  def delete_user(%User{} = user) do
-    Repo.delete(user)
-  end
+  # """
+  # def delete_user(%User{} = user) do
+  #   Repo.delete(user)
+  # end
 
   @doc """
   Returns an `%Ecto.Changeset{}` for tracking user changes.

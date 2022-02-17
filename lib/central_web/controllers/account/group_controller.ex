@@ -7,6 +7,11 @@ defmodule CentralWeb.Account.GroupController do
   plug :add_breadcrumb, name: 'Account', url: '/account'
   plug :add_breadcrumb, name: 'Groups', url: '/account/groups'
 
+  plug Bodyguard.Plug.Authorize,
+    policy: Central.Account.PublicGroup,
+    action: {Phoenix.Controller, :action_name},
+    user: {Central.Account.AuthLib, :current_user}
+
   plug(AssignPlug,
     site_menu_active: "central_account",
     sub_menu_active: "group"
@@ -436,5 +441,10 @@ defmodule CentralWeb.Account.GroupController do
       |> put_flash(:danger, "You do not have the access to alter admin status in this group.")
       |> redirect(to: Routes.account_group_path(conn, :show, group_id))
     end
+  end
+
+  def forward_to_index(conn, _) do
+    conn
+    |> redirect(to: "/")
   end
 end

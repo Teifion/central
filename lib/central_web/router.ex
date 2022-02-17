@@ -119,7 +119,6 @@ defmodule CentralWeb.Router do
     get("/edit/password", RegistrationController, :edit_password)
     put("/edit/password", RegistrationController, :update_password)
 
-    # post("/groups/create_membership", GroupController, :create_membership)
     delete("/groups/delete_membership/:group_id/:user_id", GroupController, :delete_membership)
     put("/groups/update_membership/:group_id/:user_id", GroupController, :update_membership)
 

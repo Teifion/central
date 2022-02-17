@@ -26,6 +26,9 @@ config :central, Central,
   blog_title: "Site blog",
   credit: "Your name here",
 
+  # These toggle what users are able to access from their account area
+  enabled_account_group_pages: true,
+
   # :allowed, :link_only, :disabled
   user_registrations: :link_only,
 
