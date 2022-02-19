@@ -196,7 +196,6 @@ defmodule Central.Config do
       c1.key <= c2.key
     end)
     |> Enum.group_by(fn c ->
-      # hd(String.split(c.key, "."))
       c.section
     end)
   end
@@ -339,7 +338,7 @@ defmodule Central.Config do
       c1.key <= c2.key
     end)
     |> Enum.group_by(fn c ->
-      hd(String.split(c.key, "."))
+      c.section
     end)
   end
 

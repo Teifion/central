@@ -40,3 +40,7 @@ Add other app and app_web folders to [/lib](/lib) and [/test](/test) as needed. 
 - Group configs (maybe)
 - Support for unauthed main site, maybe with some crude CMS
 - Site search (and relevant hooks/callbacks)
+- Friend system
+- Temporary accounts (send a link to a friend for something)
+- Something to indicate on user registration the email doesn't need to be valid
+- Privacy policy page
