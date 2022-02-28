@@ -201,7 +201,7 @@ defmodule CentralWeb.Account.SessionController do
             # User password reset successfully
             Central.Logging.Helpers.add_anonymous_audit_log(
               conn,
-              "Account: User password reset",
+              "Account:User password reset",
               %{
                 user: user.id,
                 notes: "Self reset"

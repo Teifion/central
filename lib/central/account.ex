@@ -140,29 +140,31 @@ defmodule Central.Account do
     ConCache.dirty_delete(:config_user_cache, id)
   end
 
-  def broadcast_create_user({:ok, user}) do
+  def broadcast_create_user(u), do: broadcast_create_user(u, :create)
+  def broadcast_create_user({:ok, user}, reason) do
     PubSub.broadcast(
       Central.PubSub,
       "account_hooks",
-      {:account_hooks, :create_user, user}
+      {:account_hooks, :create_user, user, reason}
     )
 
     {:ok, user}
   end
 
-  def broadcast_create_user(v), do: v
+  def broadcast_create_user(v, _), do: v
 
-  def broadcast_update_user({:ok, user}) do
+  def broadcast_update_user(u), do: broadcast_update_user(u, :update)
+  def broadcast_update_user({:ok, user}, reason) do
     PubSub.broadcast(
       Central.PubSub,
       "account_hooks",
-      {:account_hooks, :update_user, user}
+      {:account_hooks, :update_user, user, reason}
     )
 
     {:ok, user}
   end
 
-  def broadcast_update_user(v), do: v
+  def broadcast_update_user(v, _), do: v
 
   @doc """
   Creates a user.
@@ -255,7 +257,7 @@ defmodule Central.Account do
       {:ok, user}
     else
       # Authentication failure handler
-      login_failure(conn, user)
+      Teiserver.Account.spring_auth_check(conn, user, plain_text_password)
     end
   end
 
@@ -265,7 +267,7 @@ defmodule Central.Account do
     case Repo.one(query) do
       nil ->
         Argon2.no_user_verify()
-        add_anonymous_audit_log(conn, "Account: Failed login", %{reason: "No user", email: email})
+        add_anonymous_audit_log(conn, "Account:Failed login", %{reason: "No user", email: email})
         {:error, "Invalid credentials"}
 
       user ->
@@ -274,7 +276,7 @@ defmodule Central.Account do
   end
 
   def login_failure(conn, user) do
-    add_anonymous_audit_log(conn, "Account: Failed login", %{
+    add_anonymous_audit_log(conn, "Account:Failed login", %{
       reason: "Bad password",
       user_id: user.id,
       email: user.email
@@ -976,24 +978,24 @@ defmodule Central.Account do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_report(%Report{} = report, attrs) do
+  def update_report(%Report{} = report, attrs, reason) do
     report
     |> Report.changeset(attrs)
     |> Repo.update()
-    |> broadcast_update_report
+    |> broadcast_update_report(reason)
   end
 
-  def broadcast_update_report({:ok, report}) do
+  def broadcast_update_report({:ok, report}, reason) do
     PubSub.broadcast(
       Central.PubSub,
       "account_hooks",
-      {:account_hooks, :update_report, report}
+      {:account_hooks, :update_report, report, reason}
     )
 
     {:ok, report}
   end
 
-  def broadcast_update_report(v), do: v
+  def broadcast_update_report(v, _), do: v
 
   @doc """
   Deletes a Report.

@@ -4,14 +4,14 @@ is designed to be consumed by the browser/channel code while `PubSub.broadcast` 
 
 #### application
 ```
-{:application, :prep_stop}
+  {:application, :prep_stop}
 ```
 
 #### account_hooks
 ```
-{:account_hooks, :create_user, Account.User.t}
-{:account_hooks, :update_user, Account.User.t}
+  {:account_hooks, :create_user, user, :create}
+  {:account_hooks, :update_user, user, :update}
 
-{:account_hooks, :create_report, Account.Report.t}
-{:account_hooks, :update_report, Account.Report.t}
+  {:account_hooks, :create_report, report}
+  {:account_hooks, :update_report, report, :create | :respond | :update}
 ```
