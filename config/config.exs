@@ -24,6 +24,7 @@ config :central, Central,
   site_icon: "fas fa-broadcast-tower",
   enable_blog: true,
   blog_title: "Site blog",
+  blog_sub_title: "Text that goes under the site blog",
   credit: "Your name here",
 
   # These toggle what users are able to access from their account area
