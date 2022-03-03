@@ -10,22 +10,22 @@ body {
 }
 
 .debug {
-  background-color: #F66;
-  color: #000;
+  background-color: $debug-bg-colour;
+  color: $debug-colour;
 }
 
 // Top nav
 #top-nav {
-  border-bottom: 1px solid $light;
+  border-bottom: 1px solid $top-nav-bottom-border-colour;
 }
 
 #top-nav .navbar-brand, #top-nav .nav-item a {
-  color: $primary2;
+  color: $top-nav-item-colour;
 }
 
 #top-nav .nav-item .active {
   font-weight: bold;
-  background-color: $gray-700;
+  background-color: $top-nav-active-bg-colour;
 }
 
 /* Alerts and form errors used by phx.new */
@@ -231,6 +231,15 @@ body {
   margin-top: 20px;
 }
 
+#section-men-extended {
+  border-top: 1px solid #EEE;
+  margin-top: 5px;
+  display: none;
+}
+#section-men-extended .btn {
+  margin-top: 5px;
+}
+
 .help-block {
   color: $danger;
   padding: 2px 5px;
@@ -311,7 +320,7 @@ input[type="color"] {
   padding: 0.2rem;
 }
 
-/*
+
 .select2-selection {
   border-color: $gray-700 !important;
 }
@@ -327,27 +336,4 @@ input[type="color"] {
 
 .text-invert {
   color: $dark;
-}
-*/
-
-// Blog
-.blog-post-block {
-  display: block;
-  margin: 10px 0;
-  padding-bottom: 20px;
-  width: 100%;
-  border-bottom: 1px solid #EEE;
-}
-
-.post-short {
-  padding: 20px 0;
-}
-
-.post-tags {
-  float: right;
-}
-
-.category {
-  float: right;
-  padding: 0;
 }

@@ -12,6 +12,7 @@ defmodule CentralWeb.Config.UserConfigController do
     sub_menu_active: "config"
   )
 
+  @spec index(Plug.Conn.t(), any) :: Plug.Conn.t()
   def index(conn, _params) do
     config_values =
       conn.user_id
@@ -25,26 +26,24 @@ defmodule CentralWeb.Config.UserConfigController do
     |> render("index.html")
   end
 
+  @spec new(Plug.Conn.t(), any) :: Plug.Conn.t()
   def new(conn, %{"key" => key}) do
     config_info = Config.get_user_config_type(key)
     changeset = UserConfig.creation_changeset(%UserConfig{}, config_info)
 
-    [_, config_label] = config_info.key |> String.split(".")
-
     conn
     |> assign(:changeset, changeset)
     |> assign(:config_info, config_info)
-    |> assign(:config_label, config_label)
     |> render("new.html")
   end
 
+  @spec create(Plug.Conn.t(), any) :: Plug.Conn.t()
   def create(conn, %{"user_config" => user_config_params}) do
     user_config_params = Map.put(user_config_params, "user_id", conn.user_id)
 
-    tab =
-      user_config_params["key"]
-      |> String.split(".")
-      |> hd
+    tab = Config.get_user_config_type(user_config_params["key"])
+      |> Map.get(:section)
+      |> Central.Helpers.StringHelper.remove_spaces()
 
     case Config.create_user_config(user_config_params) do
       {:ok, _user_config} ->
@@ -59,34 +58,33 @@ defmodule CentralWeb.Config.UserConfigController do
     end
   end
 
+  @spec show(Plug.Conn.t(), any) :: Plug.Conn.t()
   def show(conn, %{"id" => id}) do
     user_config = Config.get_user_config!(id)
     render(conn, "show.html", user_config: user_config)
   end
 
+  @spec edit(Plug.Conn.t(), any) :: Plug.Conn.t()
   def edit(conn, %{"id" => key}) do
     config_info = Config.get_user_config_type(key)
     user_config = Config.get_user_config!(conn.user_id, key)
 
     changeset = Config.change_user_config(user_config)
 
-    [_, config_label] = config_info.key |> String.split(".")
-
     conn
-    |> assign(:config_label, config_label)
     |> assign(:user_config, user_config)
     |> assign(:changeset, changeset)
     |> assign(:config_info, config_info)
     |> render("edit.html")
   end
 
+  @spec update(Plug.Conn.t(), any) :: Plug.Conn.t()
   def update(conn, %{"id" => id, "user_config" => user_config_params}) do
     user_config = Config.get_user_config!(id)
 
-    tab =
-      user_config_params["key"]
-      |> String.split(".")
-      |> hd
+    tab = Config.get_user_config_type(user_config_params["key"])
+      |> Map.get(:section)
+      |> Central.Helpers.StringHelper.remove_spaces()
 
     case Config.update_user_config(user_config, user_config_params) do
       {:ok, _user_config} ->
@@ -105,6 +103,7 @@ defmodule CentralWeb.Config.UserConfigController do
     end
   end
 
+  # @spec delete(Plug.Conn.t(), any) :: Plug.Conn.t()
   # def delete(conn, %{"id" => id}) do
   #   user_config = Config.get_user_config!(id)
   #   {:ok, _user_config} = Config.delete_user_config(user_config)

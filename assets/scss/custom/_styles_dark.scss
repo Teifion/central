@@ -1,13 +1,4 @@
-.debug {
-  background-color: #F66;
-  color: #000;
-}
-
 // Top nav
-#top-nav {
-  border-bottom: 1px solid $light;
-}
-
 #top-nav .navbar-brand, #top-nav .nav-item a {
   color: $primary2;
 }
@@ -37,11 +28,11 @@
 }
 
 .menu-card a, .menu-card span {
-  color: $primary;
+  color: $menu-card-link-colour;
 }
 
 .menu-card a:hover, .menu-card span:hover {
-  color: $primary2;
+  color: $menu-card-link-colour-hover;
 }
 
 /* Page sub menu */

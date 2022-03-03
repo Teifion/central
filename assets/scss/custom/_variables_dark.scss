@@ -1,3 +1,5 @@
+@import './variables';
+
 // First override some or all individual color variables
 $white:    #fff !default;
 $gray-100: #f8f9fa !default;
@@ -229,13 +231,14 @@ $btn-close-hover-opacity:    1 !default;
 $pre-color:                         inherit !default;
 
 
+// Additional styles
+$menu-card-link-colour:         rgb(92, 112, 154);
+$menu-card-link-colour-hover:     $primary2;
 
+$top-nav-bottom-border-colour:    $light;
+$top-nav-item-colour:             $primary2;
+$top-nav-active-bg-colour:        $gray-700;
 
-$grid-breakpoints: (
-  xs: 0,
-  sm: 576px,
-  md: 768px,
-  lg: 1024px,
-  xl: 1920px,
-  xxl: 2560px,
-);
+$debug-colour:                    $dark;
+$debug-bg-colour:                 $red;
+

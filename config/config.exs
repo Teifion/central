@@ -25,16 +25,7 @@ config :central, Central,
   enable_blog: true,
   blog_title: "Site blog",
   blog_sub_title: "Text that goes under the site blog",
-  credit: "Your name here",
-
-  # These toggle what users are able to access from their account area
-  enabled_account_group_pages: true,
-
-  # :allowed, :link_only, :disabled
-  user_registrations: :disabled,
-
-  # If you have a secondary site put the link here (string)
-  main_site_link: nil
+  credit: "Your name here"
 
 # Default configs
 config :central, Central.Config,

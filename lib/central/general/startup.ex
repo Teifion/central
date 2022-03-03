@@ -2,6 +2,7 @@ defmodule Central.General.Startup do
   @moduledoc false
   use CentralWeb, :startup
 
+  @spec startup :: :ok
   def startup do
     QuickAction.add_items([
       %{

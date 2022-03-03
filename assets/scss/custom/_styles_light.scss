@@ -37,11 +37,11 @@
 }
 
 .menu-card a, .menu-card span {
-  color: rgb(52, 73, 94);
+  color: $menu-card-link-colour;
 }
 
 .menu-card a:hover, .menu-card span:hover {
-  color: $primary2;
+  color: $menu-card-link-colour-hover;
 }
 
 /* Page sub menu */
