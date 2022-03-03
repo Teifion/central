@@ -4,8 +4,10 @@ defmodule CentralWeb.Account.RegistrationController do
   alias Central.Account
   alias Central.Account.User
 
-  plug AssignPlug,
-    sidemenu_active: "account"
+  plug(AssignPlug,
+    site_menu_active: "central_account",
+    sub_menu_active: "account"
+  )
 
   @spec new(Plug.Conn.t(), map()) :: Plug.Conn.t()
   def new(conn, params) do

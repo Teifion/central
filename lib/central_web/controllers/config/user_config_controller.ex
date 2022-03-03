@@ -4,7 +4,13 @@ defmodule CentralWeb.Config.UserConfigController do
   alias Central.Config
   alias Central.Config.UserConfig
 
+  plug :add_breadcrumb, name: 'Account', url: '/account'
   plug :add_breadcrumb, name: 'User preferences', url: '/config/user'
+
+  plug(AssignPlug,
+    site_menu_active: "central_account",
+    sub_menu_active: "config"
+  )
 
   def index(conn, _params) do
     config_values =
@@ -23,9 +29,12 @@ defmodule CentralWeb.Config.UserConfigController do
     config_info = Config.get_user_config_type(key)
     changeset = UserConfig.creation_changeset(%UserConfig{}, config_info)
 
+    [_, config_label] = config_info.key |> String.split(".")
+
     conn
     |> assign(:changeset, changeset)
     |> assign(:config_info, config_info)
+    |> assign(:config_label, config_label)
     |> render("new.html")
   end
 
@@ -61,7 +70,10 @@ defmodule CentralWeb.Config.UserConfigController do
 
     changeset = Config.change_user_config(user_config)
 
+    [_, config_label] = config_info.key |> String.split(".")
+
     conn
+    |> assign(:config_label, config_label)
     |> assign(:user_config, user_config)
     |> assign(:changeset, changeset)
     |> assign(:config_info, config_info)
