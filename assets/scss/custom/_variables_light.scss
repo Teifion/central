@@ -54,16 +54,21 @@ $primary-dark: #172a6f;
 $primary2: #3498db;
 $secondary: #4A5159;
 $success: #108c1a;
+$success-dark: #006c00;
 $success2: #005c0a;
 $info: #008987;
+$info-dark: #006967;
 $info2: #A90088;
 $warning: #c37c02;
 $warning2: #CC4400;
 $danger-light: #fdd;
 $danger: #a4382c;
+$danger-dark: #84180c;
 $danger2: #800000;
 $light: #e9ecef;
 $dark: #212529;
+
+$shadow: rgba(0,0,0,0.1);
 
 
 // Then add them to your custom theme-colors map, together with any additional colors you might need
@@ -90,6 +95,8 @@ $min-contrast-ratio:   1.9 !default;
 
 // Body
 $body-bg:                   $light !default;
+$invert-color:              $light !default;
+
 $table-color:               $dark !default;
 $table-striped-color:       $dark !default;
 $table-active-color:        $dark !default;
@@ -232,8 +239,29 @@ $pre-color:                         inherit !default;
 
 
 // Additional styles
-$menu-card-link-colour:      rgb(52, 73, 94);
-$menu-card-link-colour-hover: $primary2;
+$menu-card-link-colour:         rgb(52, 73, 94);
+$menu-card-link-colour-hover:     $primary2;
 
-$debug-colour:                $dark;
-$debug-bg-colour:             $red;
+$sub-menu-icon-colour:            $gray-600;
+$sub-menu-icon-border-colour:     $gray-700;
+
+$top-nav-bg-colour:               $white;
+$top-nav-bottom-border-colour:    $light;
+$top-nav-item-colour:             $primary;
+$top-nav-active-bg-colour:        $gray-300;
+
+$debug-colour:                    $dark;
+$debug-bg-colour:                 $red;
+
+$invalid-feedback:                $danger-light;
+
+$phx-modal-bg-colour:             #fefefe;
+$phx-modal-close-colour:          #AAA;
+$phx-modal-close-colour-hover:    #000;
+
+$button-outline-colour:           $gray-800;
+$button-outline-colour-hover:     $light;
+$button-outline-focus-colour:     $dark;
+$button-outline-active-colour:    $light;
+
+$select2-border-colour:           $gray-700;
