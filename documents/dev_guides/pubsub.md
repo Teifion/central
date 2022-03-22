@@ -15,3 +15,8 @@ is designed to be consumed by the browser/channel code while `PubSub.broadcast` 
   {:account_hooks, :create_report, report}
   {:account_hooks, :update_report, report, :create | :respond | :update}
 ```
+
+#### cluster_hooks
+```
+  {:cluster_hooks, :delete, from_node, table, keys}
+```
