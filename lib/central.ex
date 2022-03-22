@@ -2,8 +2,8 @@ defmodule Central do
   @moduledoc false
 
 
-  @spec delete_cache(atom, any) :: :ok | {:error, any}
-  def delete_cache(table, keys) when is_list(keys) do
+  @spec cache_delete(atom, any) :: :ok | {:error, any}
+  def cache_delete(table, keys) when is_list(keys) do
     keys
     |> Enum.each(fn key ->
       ConCache.delete(table, key)
@@ -15,5 +15,5 @@ defmodule Central do
       {:cluster_hooks, :delete, Node.self(), table, keys}
     )
   end
-  def delete_cache(table, key), do: delete_cache(table, [key])
+  def cache_delete(table, key), do: cache_delete(table, [key])
 end
