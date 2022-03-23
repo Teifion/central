@@ -20,4 +20,5 @@ is designed to be consumed by the browser/channel code while `PubSub.broadcast` 
 ```
   {:cluster_hooks, :delete, from_node, table, keys}
   {:cluster_hooks, :put, from_node, table, key, value}
+  {:cluster_hooks, :update, from_node, table, key, func}
 ```
