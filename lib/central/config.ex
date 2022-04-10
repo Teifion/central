@@ -315,9 +315,11 @@ defmodule Central.Config do
         |> Repo.update()
     end
 
-    Central.cache_put(:config_site_cache, key, value)
+    cached_value = cast_site_config_value(key, value)
+    Central.cache_put(:config_site_cache, key, cached_value)
   end
 
+  @spec delete_site_config(String.t()) :: :ok | {:error, any}
   def delete_site_config(key) do
     query =
       from site_config in SiteConfig,

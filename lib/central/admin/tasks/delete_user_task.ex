@@ -3,9 +3,9 @@ defmodule Central.Admin.DeleteUserTask do
   alias Central.Repo
 
   @doc """
-  Expects a list of user ids
+  Expects a list of user ids, returns the results of the query
   """
-  @spec delete_users([non_neg_integer()]) :: :ok
+  @spec delete_users([non_neg_integer()]) :: {:ok, map}
   def delete_users(id_list) do
     sql_id_list = id_list
       |> Enum.join(",")
@@ -38,7 +38,5 @@ defmodule Central.Admin.DeleteUserTask do
     # And now the users
     query = "DELETE FROM account_users WHERE id IN #{sql_id_list}"
     Ecto.Adapters.SQL.query(Repo, query, [])
-
-    :ok
   end
 end
