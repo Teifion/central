@@ -50,7 +50,7 @@ defmodule Central.Account.RecentlyUsedCache do
     :ok
   end
 
-  @spec remove_recently(map(), Plug.Conn.t()) :: map()
+  @spec remove_recently(map(), Plug.Conn.t()) :: :ok
   def remove_recently(item, conn) do
     item
       |> Map.merge(%{
