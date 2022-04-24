@@ -47,11 +47,15 @@ defmodule Central.MixProject do
       {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 3.0"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      # {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_live_reload, "~> 1.3.2", only: :dev},
       {:phoenix_live_view, "~> 0.17"},
-      {:floki, ">= 0.30.0", only: :test},
+      # {:floki, ">= 0.30.0", only: :test},
+      {:floki, ">= 0.31.0", only: :test},
       {:phoenix_live_dashboard, "~> 0.6"},
       {:esbuild, "~> 0.2", runtime: Mix.env() == :dev},
+      {:bamboo, "~> 2.1"},
+      {:bamboo_smtp, "~> 4.0"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
       {:gettext, "~> 0.18"},
@@ -59,8 +63,6 @@ defmodule Central.MixProject do
       {:plug_cowboy, "~> 2.5"},
 
       # Extra deps
-      {:bamboo, "~> 2.1"},
-      {:bamboo_smtp, "~> 4.0"},
       {:ecto_psql_extras, "~> 0.7"},
       {:logger_file_backend, "~> 0.0.10"},
       {:timex, "~> 3.7.5"},
@@ -68,8 +70,8 @@ defmodule Central.MixProject do
       {:guardian, "~> 2.1"},
       {:argon2_elixir, "~> 2.3"},
       {:bodyguard, "~> 2.4"},
-      {:human_time, "~> 0.2.4"},
-      {:oban, "~> 2.10"},
+      {:human_time, "~> 0.3.0"},
+      {:oban, "~> 2.11"},
       {:parallel, "~> 0.0"},
       {:con_cache, "~> 1.0"},
       {:phoenix_pubsub, "~> 2.0"},
@@ -78,6 +80,7 @@ defmodule Central.MixProject do
       {:credo, "~> 1.6", only: [:dev, :test], runtime: false},
       {:dialyxir, "~> 1.1", only: [:dev], runtime: false},
       {:dart_sass, "~> 0.3", only: [:dev]},
+      {:libcluster, "~> 3.3"},
     ]
   end
 
