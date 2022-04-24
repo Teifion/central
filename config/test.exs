@@ -27,7 +27,6 @@ config :central, Central.Mailer,
   noreply_address: "noreply@testsite.co.uk",
   contact_address: "info@testsite.co.uk"
 
-
 # Print only warnings and errors during test
 config :logger, level: :warn
 
