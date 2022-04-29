@@ -192,6 +192,21 @@ defmodule Central.Account do
     |> broadcast_create_user
   end
 
+  def create_throwaway_user(attrs \\ %{}) do
+    params = %{
+        "name" => generate_throwaway_name(),
+        "email" => "#{UUID.uuid1()}@throwaway",
+        "password" => UUID.uuid1(),
+      }
+      |> Central.Helpers.StylingHelper.random_styling()
+      |> Map.merge(attrs)
+
+    %User{}
+      |> User.changeset(params)
+      |> Repo.insert()
+      |> broadcast_create_user
+  end
+
   def merge_default_params(user_params) do
     Map.merge(
       %{
