@@ -5,7 +5,7 @@ defmodule Central.Admin.DeleteUserTask do
   @doc """
   Expects a list of user ids, returns the results of the query
   """
-  @spec delete_users([non_neg_integer()]) :: {:ok, map}
+  @spec delete_users([non_neg_integer()]) :: {:ok, map} | {:error, map}
   def delete_users(id_list) do
     sql_id_list = id_list
       |> Enum.join(",")
@@ -13,6 +13,10 @@ defmodule Central.Admin.DeleteUserTask do
 
     # Reports
     query = "DELETE FROM account_reports WHERE reporter_id IN #{sql_id_list} OR target_id IN #{sql_id_list} OR responder_id IN #{sql_id_list}"
+    Ecto.Adapters.SQL.query(Repo, query, [])
+
+    # Codes
+    query = "DELETE FROM account_codes WHERE user_id IN #{sql_id_list}"
     Ecto.Adapters.SQL.query(Repo, query, [])
 
     # Chat
@@ -33,6 +37,10 @@ defmodule Central.Admin.DeleteUserTask do
 
     # Page view logs
     query = "DELETE FROM page_view_logs WHERE user_id IN #{sql_id_list}"
+    Ecto.Adapters.SQL.query(Repo, query, [])
+
+    # Audit logs
+    query = "DELETE FROM audit_logs WHERE user_id IN #{sql_id_list}"
     Ecto.Adapters.SQL.query(Repo, query, [])
 
     # And now the users

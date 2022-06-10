@@ -259,12 +259,13 @@ defmodule Central.Helpers.TimexHelper do
     |> duration_to_str
   end
 
+  @minute 60
   @hour 60 * 60
   @day 60 * 60 * 24
   def duration_to_str(seconds) do
     cond do
       seconds >= @day ->
-        days = seconds/@day |> round
+        days = seconds/@day |> :math.floor |> round
         if days == 1 do
           "#{days} day"
         else
@@ -272,7 +273,7 @@ defmodule Central.Helpers.TimexHelper do
         end
 
       seconds >= @hour ->
-        hours = seconds/@hour |> round
+        hours = seconds/@hour |> :math.floor |> round
         if hours == 1 do
           "#{hours} hour"
         else
@@ -282,5 +283,40 @@ defmodule Central.Helpers.TimexHelper do
       true ->
         "#{seconds} seconds"
     end
+  end
+
+  def duration_to_str_short(seconds) do
+    {days, remaining} = if seconds >= @day do
+      days = seconds/@day |> :math.floor |> round
+      {days, seconds - (days * @day)}
+    else
+      {0, seconds}
+    end
+
+    {hours, remaining} = if remaining >= @hour do
+      hours = remaining/@hour |> :math.floor |> round
+      {hours, remaining - (hours * @hour)}
+    else
+      {0, remaining}
+    end
+
+    {minutes, remaining} = if remaining >= @minute do
+      minutes = remaining/@minute |> :math.floor |> round
+      {minutes, remaining - (minutes * @minute)}
+    else
+      {0, remaining}
+    end
+
+    minutes = if minutes < 10, do: "0#{minutes}", else: minutes
+    remaining = if remaining < 10, do: "0#{remaining}", else: remaining
+
+    [
+      (if days > 0, do: "#{days}d "),
+      (if hours > 0, do: "#{hours}:"),
+      "#{minutes}:",
+      "#{remaining}",
+    ]
+      |> Enum.reject(fn v -> v == nil end)
+      |> Enum.join("")
   end
 end
